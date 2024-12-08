@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://33y1mybt4waa"]
+[gd_scene load_steps=6 format=4 uid="uid://33y1mybt4waa"]
 
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="1_hm024"]
 [ext_resource type="Texture2D" uid="uid://dimdxohw588xg" path="res://assets/player/player.png" id="2_d1xmr"]
+[ext_resource type="Texture2D" uid="uid://c7jggusv52vr2" path="res://assets/gas_can/gas_can.png" id="3_ah3je"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj53s"]
 texture = ExtResource("1_hm024")
@@ -44,3 +45,7 @@ tile_set = SubResource("TileSet_jke3l")
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(36, 17)
 texture = ExtResource("2_d1xmr")
+
+[node name="GasCan" type="Sprite2D" parent="."]
+position = Vector2(72, 40)
+texture = ExtResource("3_ah3je")
