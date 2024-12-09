@@ -671,5 +671,5 @@ position = Vector2(141, 30)
 texture = ExtResource("10_iyg4v")
 
 [node name="CircutBoard" type="Sprite2D" parent="."]
-position = Vector2(80, 112)
+position = Vector2(80, 104)
 texture = ExtResource("11_hmf1d")
