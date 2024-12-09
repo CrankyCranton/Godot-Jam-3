@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://33y1mybt4waa"]
+[gd_scene load_steps=21 format=4 uid="uid://33y1mybt4waa"]
 
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="1_hm024"]
 [ext_resource type="Texture2D" uid="uid://buod2p78ackxt" path="res://assets/character_shadow/character_shadow.png" id="2_0d1v0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cs5f7dqc1w4yu" path="res://assets/command_panel/command_panel.png" id="8_c6e1i"]
 [ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/area_glow/area_glow.png" id="10_iyg4v"]
 [ext_resource type="Texture2D" uid="uid://xlhy665mvtt2" path="res://assets/circut_board/circut_board.png" id="11_hmf1d"]
+[ext_resource type="Texture2D" uid="uid://dmqjq6ybbi583" path="res://assets/refrigerator/refrigerator.png" id="12_rl645"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj53s"]
 texture = ExtResource("1_hm024")
@@ -673,3 +674,7 @@ texture = ExtResource("10_iyg4v")
 [node name="CircutBoard" type="Sprite2D" parent="."]
 position = Vector2(80, 104)
 texture = ExtResource("11_hmf1d")
+
+[node name="Refrigerator" type="Sprite2D" parent="."]
+position = Vector2(32, 152)
+texture = ExtResource("12_rl645")
