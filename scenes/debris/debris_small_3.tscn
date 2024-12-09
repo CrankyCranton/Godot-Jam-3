@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4s8umi7ddrfe"]
+
+[ext_resource type="PackedScene" uid="uid://dhurmvqqacj0t" path="res://scenes/debris/debris.tscn" id="1_g8f3v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_id2qx"]
+radius = 2.0
+
+[node name="DebrisSmall3" instance=ExtResource("1_g8f3v")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1, 0)
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_id2qx")

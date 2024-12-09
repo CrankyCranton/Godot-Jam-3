@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhurmvqqacj0t"]
+
+[ext_resource type="Texture2D" uid="uid://bu5ie1oda4nh7" path="res://assets/debris/debris.png" id="1_ccwkw"]
+
+[node name="Debris" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ccwkw")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
