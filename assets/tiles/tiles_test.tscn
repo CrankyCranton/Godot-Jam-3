@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://33y1mybt4waa"]
+[gd_scene load_steps=13 format=4 uid="uid://33y1mybt4waa"]
 
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="1_hm024"]
 [ext_resource type="Texture2D" uid="uid://dimdxohw588xg" path="res://assets/player/player.png" id="2_d1xmr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c03srpav2opc7" path="res://assets/items/laser_gun/laser_gun.png" id="5_sk122"]
 [ext_resource type="Texture2D" uid="uid://dc6numek7ase5" path="res://assets/items/item_glow/item_glow.png" id="6_bkpu8"]
 [ext_resource type="Texture2D" uid="uid://cpv6honmno36t" path="res://assets/alien/alien.png" id="7_pmbjv"]
+[ext_resource type="Texture2D" uid="uid://cs5f7dqc1w4yu" path="res://assets/command_panel/command_panel.png" id="8_c6e1i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj53s"]
 texture = ExtResource("1_hm024")
@@ -410,3 +411,7 @@ texture = ExtResource("6_bkpu8")
 [node name="Alien" type="Sprite2D" parent="."]
 position = Vector2(84, 19)
 texture = ExtResource("7_pmbjv")
+
+[node name="CommandPanel" type="Sprite2D" parent="."]
+position = Vector2(141, 34)
+texture = ExtResource("8_c6e1i")
