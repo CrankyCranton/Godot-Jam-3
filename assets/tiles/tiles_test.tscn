@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://33y1mybt4waa"]
+[gd_scene load_steps=38 format=4 uid="uid://33y1mybt4waa"]
 
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="1_hm024"]
 [ext_resource type="Texture2D" uid="uid://buod2p78ackxt" path="res://assets/character_shadow/character_shadow.png" id="2_0d1v0"]
@@ -472,10 +472,6 @@ custom_data_layer_0/type = 24
 sources/0 = SubResource("TileSetAtlasSource_4oi31")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fy13x"]
-light_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7y66l"]
-blend_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nm68x"]
 blend_mode = 1
@@ -530,13 +526,6 @@ position = Vector2(73, 56)
 texture = ExtResource("3_ah3je")
 
 [node name="ItemGlow" type="PointLight2D" parent="GasCan"]
-visible = false
-texture = ExtResource("6_bkpu8")
-
-[node name="ItemGlow2" type="Sprite2D" parent="GasCan"]
-show_behind_parent = true
-texture_filter = 2
-material = SubResource("CanvasItemMaterial_7y66l")
 texture = ExtResource("6_bkpu8")
 
 [node name="Grenade" type="Sprite2D" parent="."]
@@ -545,13 +534,6 @@ position = Vector2(8, 40)
 texture = ExtResource("4_blhkw")
 
 [node name="ItemGlow" type="PointLight2D" parent="Grenade"]
-visible = false
-texture = ExtResource("6_bkpu8")
-
-[node name="ItemGlow2" type="Sprite2D" parent="Grenade"]
-show_behind_parent = true
-texture_filter = 2
-material = SubResource("CanvasItemMaterial_7y66l")
 texture = ExtResource("6_bkpu8")
 
 [node name="LaserGun" type="Sprite2D" parent="."]
@@ -560,13 +542,6 @@ position = Vector2(40, 40)
 texture = ExtResource("5_sk122")
 
 [node name="ItemGlow" type="PointLight2D" parent="LaserGun"]
-visible = false
-texture = ExtResource("6_bkpu8")
-
-[node name="ItemGlow3" type="Sprite2D" parent="LaserGun"]
-show_behind_parent = true
-texture_filter = 2
-material = SubResource("CanvasItemMaterial_7y66l")
 texture = ExtResource("6_bkpu8")
 
 [node name="Alien" type="Sprite2D" parent="."]
