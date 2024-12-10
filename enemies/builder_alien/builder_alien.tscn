@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvvipuf122uv2"]
+
+[ext_resource type="PackedScene" uid="uid://b78fe6gubyukd" path="res://components/state/state_machine.tscn" id="1_18hia"]
+[ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="1_qglad"]
+[ext_resource type="Script" path="res://enemies/builder_alien/states/builderAvoid.gd" id="2_lw21r"]
+[ext_resource type="Script" path="res://builderIdle.gd" id="4_x6qwj"]
+[ext_resource type="Script" path="res://enemies/builder_alien/states/builderMove.gd" id="5_71jhu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n3wha"]
+radius = 120.204
+
+[node name="builder_alien" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_qglad")
+
+[node name="player_detector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+shape = SubResource("CircleShape2D_n3wha")
+
+[node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_18hia")]
+initial_state = NodePath("builderIdle")
+
+[node name="builderIdle" type="Node" parent="state_machine"]
+script = ExtResource("4_x6qwj")
+
+[node name="builderAvoid" type="Node" parent="state_machine" node_paths=PackedStringArray("enemy_parent", "timer")]
+script = ExtResource("2_lw21r")
+enemy_parent = NodePath("../..")
+timer = NodePath("../../AvoidTimer")
+spd = 20
+
+[node name="builderMove" type="Node" parent="state_machine" node_paths=PackedStringArray("enemy_parent", "navigation")]
+script = ExtResource("5_71jhu")
+enemy_parent = NodePath("../..")
+navigation = NodePath("../../NavigationAgent2D")
+speed = 20
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AvoidTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="player_detector" to="state_machine/builderIdle" method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="player_detector" to="state_machine/builderAvoid" method="_on_player_detector_body_exited"]
+[connection signal="timeout" from="AvoidTimer" to="state_machine/builderAvoid" method="_on_avoid_timer_timeout"]

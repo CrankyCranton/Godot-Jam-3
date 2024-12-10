@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqsvd6c4po8oc"]
+
+[ext_resource type="Script" path="res://enemies/guard_alien/gun/bullet.gd" id="1_78iyx"]
+[ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="2_hb7fr"]
+
+[node name="bullet" type="CharacterBody2D"]
+script = ExtResource("1_78iyx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_hb7fr")
