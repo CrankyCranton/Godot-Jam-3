@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh56rhb2q2hvu"]
+
+[ext_resource type="PackedScene" uid="uid://bgou0u66jm82e" path="res://player/player.tscn" id="1_y6krj"]
+[ext_resource type="PackedScene" uid="uid://bvvipuf122uv2" path="res://enemies/builder_alien/builder_alien.tscn" id="2_fumjk"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rynre"]
+vertices = PackedVector2Array(743.156, -355.047, 701.828, 107.219, 156.094, 120.742, 160.898, -414.922)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(151, -426, 754, -364, 711, 117, 146, 131)])
+
+[node name="test" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_y6krj")]
+
+[node name="builder_alien" parent="." instance=ExtResource("2_fumjk")]
+position = Vector2(172, 151)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["navigation"]]
+position = Vector2(-126, 446)
+navigation_polygon = SubResource("NavigationPolygon_rynre")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b78fe6gubyukd"]
+
+[ext_resource type="Script" path="res://components/state/state_machine.gd" id="1_pmpqu"]
+
+[node name="state_machine" type="Node2D"]
+script = ExtResource("1_pmpqu")

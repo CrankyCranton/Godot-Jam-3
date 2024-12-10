@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1karoguckmji"]
+
+[ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="1_joupp"]
+[ext_resource type="PackedScene" uid="uid://b78fe6gubyukd" path="res://components/state/state_machine.tscn" id="1_m2huh"]
+[ext_resource type="Script" path="res://enemies/guard_alien/states/guardShoot.gd" id="2_6evm2"]
+[ext_resource type="Script" path="res://enemies/guard_alien/states/guardIdle.gd" id="2_ipr6l"]
+[ext_resource type="PackedScene" uid="uid://c5lqshpfbbxpq" path="res://enemies/guard_alien/gun/enemy_gun.tscn" id="3_l4vc4"]
+[ext_resource type="Script" path="res://enemies/guard_alien/states/guardAlert.gd" id="3_mg6n0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_saiwl"]
+radius = 165.511
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iqr2c"]
+radius = 242.0
+
+[node name="guard_alien" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_joupp")
+
+[node name="shooting_range" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shooting_range"]
+shape = SubResource("CircleShape2D_saiwl")
+
+[node name="Detect_area" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect_area"]
+shape = SubResource("CircleShape2D_iqr2c")
+
+[node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_m2huh")]
+initial_state = NodePath("guardIdle")
+
+[node name="guardIdle" type="Node" parent="state_machine"]
+script = ExtResource("2_ipr6l")
+
+[node name="guardAlert" type="Node" parent="state_machine" node_paths=PackedStringArray("navigation", "enemy_parent")]
+script = ExtResource("3_mg6n0")
+navigation = NodePath("../../NavigationAgent2D")
+enemy_parent = NodePath("../..")
+spd = 20
+
+[node name="guardShoot" type="Node" parent="state_machine" node_paths=PackedStringArray("gun", "timer")]
+script = ExtResource("2_6evm2")
+gun = NodePath("../../enemy_gun")
+timer = NodePath("../../Timer")
+
+[node name="enemy_gun" parent="." instance=ExtResource("3_l4vc4")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="body_entered" from="shooting_range" to="state_machine/guardAlert" method="_on_shooting_range_body_entered"]
+[connection signal="body_exited" from="shooting_range" to="state_machine/guardShoot" method="_on_shooting_range_body_exited"]
+[connection signal="body_entered" from="Detect_area" to="state_machine/guardIdle" method="_on_detect_area_body_entered"]
+[connection signal="body_exited" from="Detect_area" to="state_machine/guardAlert" method="_on_detect_area_body_exited"]
+[connection signal="timeout" from="Timer" to="state_machine/guardShoot" method="_on_timer_timeout"]
