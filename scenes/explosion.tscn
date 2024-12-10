@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbeevbiong0h2"]
+[gd_scene load_steps=17 format=3 uid="uid://bbeevbiong0h2"]
 
 [ext_resource type="Script" path="res://scripts/explosion.gd" id="1_b0l0v"]
 [ext_resource type="Texture2D" uid="uid://bs8ld2eunvqgi" path="res://assets/particles/explosion/explosion.png" id="2_2rfjr"]
@@ -77,7 +77,12 @@ damping_curve = SubResource("CurveTexture_6rl2y")
 scale_curve = SubResource("CurveTexture_ryakg")
 color_ramp = SubResource("GradientTexture1D_ue0om")
 
-[node name="Explosion" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mn52s"]
+resource_local_to_scene = true
+radius = 0.01
+
+[node name="Explosion" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_b0l0v")
 
 [node name="Fire" type="GPUParticles2D" parent="."]
@@ -98,5 +103,13 @@ amount = 64
 process_material = SubResource("ParticleProcessMaterial_4ur28")
 texture = ExtResource("2_2rfjr")
 lifetime = 5.0
+one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mn52s")
+
+[node name="LineOfFire" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(0, 0)
