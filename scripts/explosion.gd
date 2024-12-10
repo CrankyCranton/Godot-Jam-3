@@ -8,6 +8,8 @@ class_name Explosion extends Area2D
 @export var max_smoke := 2.0
 #@export var smoke_spawns := 2
 
+var hit: Array[Node2D] = []
+
 @onready var fire: GPUParticles2D = %Fire
 @onready var holy_smoke: GPUParticles2D = %"HolySmoke!"
 @onready var shape: CollisionShape2D = $Shape
@@ -42,8 +44,12 @@ func explode() -> void:
 
 func ray_scan() -> void:
 	for body in get_overlapping_bodies():
+		#if body is TileMapLayer or body in hit:
+			#return
+
 		line_of_fire.target_position = line_of_fire.to_local(body.global_position)
 		line_of_fire.force_raycast_update()
 		if line_of_fire.get_collider() == body:
-			if body is Wall:
+			hit.append(body)
+			if body is Wall or body is Target:
 				body.explode()

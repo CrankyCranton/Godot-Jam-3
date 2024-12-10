@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://33y1mybt4waa"]
+[gd_scene load_steps=32 format=4 uid="uid://33y1mybt4waa"]
 
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="1_hm024"]
 [ext_resource type="Texture2D" uid="uid://buod2p78ackxt" path="res://assets/character_shadow/character_shadow.png" id="2_0d1v0"]
@@ -10,12 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://c03srpav2opc7" path="res://assets/items/laser_gun/laser_gun.png" id="5_sk122"]
 [ext_resource type="Texture2D" uid="uid://dc6numek7ase5" path="res://assets/lights/item_glow/item_glow.png" id="6_bkpu8"]
 [ext_resource type="Texture2D" uid="uid://cpv6honmno36t" path="res://assets/alien/alien.png" id="7_pmbjv"]
-[ext_resource type="Texture2D" uid="uid://cs5f7dqc1w4yu" path="res://assets/command_panel/command_panel.png" id="8_c6e1i"]
+[ext_resource type="Texture2D" uid="uid://cs5f7dqc1w4yu" path="res://assets/targets/command_panel/command_panel.png" id="8_c6e1i"]
 [ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/lights/area_glow/area_glow.png" id="10_iyg4v"]
-[ext_resource type="Texture2D" uid="uid://xlhy665mvtt2" path="res://assets/circut_board/circut_board.png" id="11_hmf1d"]
-[ext_resource type="Texture2D" uid="uid://dmqjq6ybbi583" path="res://assets/refrigerator/refrigerator.png" id="12_rl645"]
+[ext_resource type="Texture2D" uid="uid://xlhy665mvtt2" path="res://assets/targets/circut_board/circut_board.png" id="11_hmf1d"]
+[ext_resource type="Texture2D" uid="uid://dmqjq6ybbi583" path="res://assets/targets/refrigerator/refrigerator.png" id="12_rl645"]
 [ext_resource type="PackedScene" uid="uid://bbeevbiong0h2" path="res://scenes/explosion.tscn" id="13_i1gal"]
 [ext_resource type="Texture2D" uid="uid://bs8ld2eunvqgi" path="res://assets/particles/explosion/explosion.png" id="16_ssc7c"]
+[ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="17_fi1d3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj53s"]
 texture = ExtResource("1_hm024")
@@ -514,6 +515,21 @@ script = ExtResource("3_axmag")
 tile_map_data = PackedByteArray("AAABAAAAAAABAAQAAAADAAAAAAACAAQAAAAGAAQAAAACAAQAAAA=")
 tile_set = SubResource("TileSet_wuttn")
 
+[node name="Target" parent="." instance=ExtResource("17_fi1d3")]
+position = Vector2(136, 95)
+
+[node name="Target2" parent="." instance=ExtResource("17_fi1d3")]
+position = Vector2(184, 24)
+
+[node name="Target3" parent="." instance=ExtResource("17_fi1d3")]
+position = Vector2(120, 24)
+
+[node name="Target4" parent="." instance=ExtResource("17_fi1d3")]
+position = Vector2(152, 24)
+
+[node name="Target5" parent="." instance=ExtResource("17_fi1d3")]
+position = Vector2(184, 55)
+
 [node name="Explosion4" type="Sprite2D" parent="."]
 modulate = Color(0.25, 0.25, 0.25, 1)
 material = SubResource("CanvasItemMaterial_kdedk")
@@ -601,21 +617,14 @@ texture = ExtResource("10_iyg4v")
 
 [node name="Explosion" parent="." instance=ExtResource("13_i1gal")]
 position = Vector2(32, 141)
-radius = null
-density = null
-max_smoke = null
 
 [node name="Explosion2" parent="." instance=ExtResource("13_i1gal")]
 position = Vector2(149, 38)
 radius = 256.0
-density = null
-max_smoke = null
 
 [node name="Explosion3" parent="." instance=ExtResource("13_i1gal")]
 position = Vector2(258, 152)
 radius = 16.0
-density = null
-max_smoke = null
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(256, 88)

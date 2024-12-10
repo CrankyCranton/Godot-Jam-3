@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmqjq6ybbi583"
-path="res://.godot/imported/refrigerator.png-9e300cf7819eaabd2bf3602095fa6278.ctex"
+path="res://.godot/imported/refrigerator.png-940f8fb5aa1bd63cab93d67f0d2646d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/refrigerator/refrigerator.png"
-dest_files=["res://.godot/imported/refrigerator.png-9e300cf7819eaabd2bf3602095fa6278.ctex"]
+source_file="res://assets/targets/refrigerator/refrigerator.png"
+dest_files=["res://.godot/imported/refrigerator.png-940f8fb5aa1bd63cab93d67f0d2646d6.ctex"]
 
 [params]
 
