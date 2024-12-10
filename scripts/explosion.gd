@@ -8,7 +8,7 @@ class_name Explosion extends Area2D
 @onready var shape: CollisionShape2D = $Shape
 @onready var line_of_fire: RayCast2D = $LineOfFire
 
-@export var radius := 64.0
+@export var radius := 32.0
 @export var density := 2.0
 @export var max_smoke := 2
 #@export var smoke_spawns := 2
@@ -37,4 +37,5 @@ func _physics_process(_delta: float) -> void:
 		line_of_fire.target_position = line_of_fire.to_local(body.global_position)
 		line_of_fire.force_raycast_update()
 		if line_of_fire.get_collider() == body:
-			pass # Body collided.
+			if body is Wall:
+				body.explode()

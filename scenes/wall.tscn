@@ -1,18 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuila53tv68je"]
+[gd_scene load_steps=9 format=3 uid="uid://cuila53tv68je"]
 
-[ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/area_glow/area_glow.png" id="1_45m3q"]
 [ext_resource type="Script" path="res://scripts/wall.gd" id="1_u3nop"]
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="2_7rw3o"]
+[ext_resource type="Texture2D" uid="uid://dckp1m3vcu4w2" path="res://assets/lights/spot_light/spot_light.png" id="2_jeamr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6bkg3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vase4"]
 size = Vector2(32, 14)
+
+[sub_resource type="Animation" id="Animation_o4s8t"]
+resource_name = "explode"
+length = 3.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.11, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 0.25, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jbpsn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jadl7"]
+_data = {
+"RESET": SubResource("Animation_jbpsn"),
+"explode": SubResource("Animation_o4s8t")
+}
 
 [node name="Wall" type="StaticBody2D"]
 script = ExtResource("1_u3nop")
 
 [node name="Light" type="PointLight2D" parent="."]
-position = Vector2(0, -11)
-texture = ExtResource("1_45m3q")
+position = Vector2(0, 18)
+texture = ExtResource("2_jeamr")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_7rw3o")
@@ -20,5 +60,12 @@ region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_6bkg3")
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_vase4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jadl7")
+}

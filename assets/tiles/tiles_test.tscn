@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://33y1mybt4waa"]
+[gd_scene load_steps=31 format=4 uid="uid://33y1mybt4waa"]
 
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="1_hm024"]
 [ext_resource type="Texture2D" uid="uid://buod2p78ackxt" path="res://assets/character_shadow/character_shadow.png" id="2_0d1v0"]
@@ -8,13 +8,14 @@
 [ext_resource type="Script" path="res://scripts/wall_tiles.gd" id="3_axmag"]
 [ext_resource type="Texture2D" uid="uid://bsooutmtd8f2s" path="res://assets/items/grenade/grenade.png" id="4_blhkw"]
 [ext_resource type="Texture2D" uid="uid://c03srpav2opc7" path="res://assets/items/laser_gun/laser_gun.png" id="5_sk122"]
-[ext_resource type="Texture2D" uid="uid://dc6numek7ase5" path="res://assets/items/item_glow/item_glow.png" id="6_bkpu8"]
+[ext_resource type="Texture2D" uid="uid://dc6numek7ase5" path="res://assets/lights/item_glow/item_glow.png" id="6_bkpu8"]
 [ext_resource type="Texture2D" uid="uid://cpv6honmno36t" path="res://assets/alien/alien.png" id="7_pmbjv"]
 [ext_resource type="Texture2D" uid="uid://cs5f7dqc1w4yu" path="res://assets/command_panel/command_panel.png" id="8_c6e1i"]
-[ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/area_glow/area_glow.png" id="10_iyg4v"]
+[ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/lights/area_glow/area_glow.png" id="10_iyg4v"]
 [ext_resource type="Texture2D" uid="uid://xlhy665mvtt2" path="res://assets/circut_board/circut_board.png" id="11_hmf1d"]
 [ext_resource type="Texture2D" uid="uid://dmqjq6ybbi583" path="res://assets/refrigerator/refrigerator.png" id="12_rl645"]
 [ext_resource type="PackedScene" uid="uid://bbeevbiong0h2" path="res://scenes/explosion.tscn" id="13_i1gal"]
+[ext_resource type="Texture2D" uid="uid://bs8ld2eunvqgi" path="res://assets/particles/explosion/explosion.png" id="16_ssc7c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj53s"]
 texture = ExtResource("1_hm024")
@@ -457,6 +458,9 @@ custom_data_layer_0/name = "scene"
 custom_data_layer_0/type = 24
 sources/0 = SubResource("TileSetAtlasSource_4oi31")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kdedk"]
+blend_mode = 2
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fy13x"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fr7cx"]
@@ -489,6 +493,12 @@ script = ExtResource("3_axmag")
 [node name="Details" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAAAAAABAAQAAAADAAAAAAACAAQAAAAGAAQAAAACAAQAAAA=")
 tile_set = SubResource("TileSet_wuttn")
+
+[node name="Explosion4" type="Sprite2D" parent="."]
+modulate = Color(0.25, 0.25, 0.25, 1)
+material = SubResource("CanvasItemMaterial_kdedk")
+position = Vector2(153, 92)
+texture = ExtResource("16_ssc7c")
 
 [node name="CharacterShadow" type="Sprite2D" parent="."]
 position = Vector2(36, 25)
@@ -570,14 +580,14 @@ energy = 0.75
 texture = ExtResource("10_iyg4v")
 
 [node name="Explosion" parent="." instance=ExtResource("13_i1gal")]
-position = Vector2(30, 149)
+position = Vector2(32, 141)
 
 [node name="Explosion2" parent="." instance=ExtResource("13_i1gal")]
 position = Vector2(149, 38)
 radius = 256.0
 
 [node name="Explosion3" parent="." instance=ExtResource("13_i1gal")]
-position = Vector2(273, 143)
+position = Vector2(258, 152)
 radius = 16.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
