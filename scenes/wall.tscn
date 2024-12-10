@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=3 uid="uid://cuila53tv68je"]
+
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_u3nop"]
+[ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="2_7rw3o"]
+[ext_resource type="PackedScene" uid="uid://d0g16bnwk20cj" path="res://scenes/debris/debris_medium_1.tscn" id="2_ixlpi"]
+[ext_resource type="Texture2D" uid="uid://dckp1m3vcu4w2" path="res://assets/lights/spot_light/spot_light.png" id="2_jeamr"]
+[ext_resource type="PackedScene" uid="uid://dh1eat8wme2uu" path="res://scenes/debris/debris_medium_2.tscn" id="3_6ekpm"]
+[ext_resource type="PackedScene" uid="uid://co1dtjstrsm3b" path="res://scenes/debris/debris_medium_3.tscn" id="4_j064n"]
+[ext_resource type="PackedScene" uid="uid://d14tmh2jadbok" path="res://scenes/debris/debris_small_1.tscn" id="5_s8tdi"]
+[ext_resource type="PackedScene" uid="uid://bjygp3areorou" path="res://scenes/debris/debris_small_2.tscn" id="6_bpfe5"]
+[ext_resource type="PackedScene" uid="uid://b4s8umi7ddrfe" path="res://scenes/debris/debris_small_3.tscn" id="7_v13dc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6bkg3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vase4"]
+size = Vector2(32, 14)
+
+[sub_resource type="Animation" id="Animation_jbpsn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_o4s8t"]
+resource_name = "explode"
+length = 3.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.11, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 0.25, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jadl7"]
+_data = {
+"RESET": SubResource("Animation_jbpsn"),
+"explode": SubResource("Animation_o4s8t")
+}
+
+[node name="Wall" type="StaticBody2D"]
+script = ExtResource("1_u3nop")
+debris = Array[PackedScene]([ExtResource("2_ixlpi"), ExtResource("3_6ekpm"), ExtResource("4_j064n"), ExtResource("5_s8tdi"), ExtResource("6_bpfe5"), ExtResource("7_v13dc")])
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(0, 18)
+texture = ExtResource("2_jeamr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_7rw3o")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_6bkg3")
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_vase4")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jadl7")
+}
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Top" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(0, -7)
+rotation = 1.57079
+
+[node name="Bottom" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(0, 16)
+rotation = -1.5708
+
+[node name="Left" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-16, 0)
+
+[node name="Right" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(16, 0)
+rotation = 3.14159

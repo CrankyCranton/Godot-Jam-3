@@ -14,12 +14,16 @@ config/name="Godot Jam #3"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[global_group]
+[display]
 
-player=""
-navigation=""
+window/size/viewport_width=320
+window/size/viewport_height=180
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+limits/opengl/max_renderable_lights=256
+limits/opengl/max_lights_per_object=1024
+environment/defaults/default_clear_color=Color(0.0588235, 0.0588235, 0.0627451, 1)

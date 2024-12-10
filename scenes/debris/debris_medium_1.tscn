@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0g16bnwk20cj"]
+
+[ext_resource type="PackedScene" uid="uid://dhurmvqqacj0t" path="res://scenes/debris/debris.tscn" id="1_q2xhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_700e8"]
+size = Vector2(7.12132, 7.77818)
+
+[node name="DebrisMedium1" instance=ExtResource("1_q2xhq")]
+mass = 10.0
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_700e8")
