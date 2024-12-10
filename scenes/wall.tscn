@@ -1,17 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuila53tv68je"]
+[gd_scene load_steps=5 format=3 uid="uid://cuila53tv68je"]
 
 [ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/area_glow/area_glow.png" id="1_45m3q"]
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_u3nop"]
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="2_7rw3o"]
 
-[node name="Wall" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vase4"]
+size = Vector2(32, 14)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Wall" type="StaticBody2D"]
+script = ExtResource("1_u3nop")
+
+[node name="Light" type="PointLight2D" parent="."]
 position = Vector2(0, -11)
 texture = ExtResource("1_45m3q")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_7rw3o")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_vase4")
