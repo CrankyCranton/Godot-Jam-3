@@ -726,10 +726,7 @@ position = Vector2(-48, 31)
 texture = ExtResource("12_rl645")
 
 [node name="Explosion" parent="." instance=ExtResource("13_i1gal")]
-position = Vector2(264, 88)
-
-[node name="Fire" parent="Explosion" index="0"]
-position = Vector2(-104, 40)
+position = Vector2(150, 151)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -742,5 +739,3 @@ occluder = SubResource("OccluderPolygon2D_rar64")
 [node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_uyowq")
-
-[editable path="Explosion"]
