@@ -576,6 +576,10 @@ position = Vector2(30, 149)
 position = Vector2(149, 38)
 radius = 256.0
 
+[node name="Explosion3" parent="." instance=ExtResource("13_i1gal")]
+position = Vector2(273, 143)
+radius = 16.0
+
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(256, 88)
 rotation = 0.913679

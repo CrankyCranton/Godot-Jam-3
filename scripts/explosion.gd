@@ -1,3 +1,5 @@
+# If hits gas can, gas can explodes with
+# gas_can_explosion.radius = radius * 2 - distance_to(gas_can)
 class_name Explosion extends Area2D
 
 
