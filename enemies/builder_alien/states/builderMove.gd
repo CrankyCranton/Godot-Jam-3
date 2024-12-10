@@ -17,15 +17,13 @@ func physics_update(_delta:float):
 	var direction = Vector2()
 
 	navigation.target_position = target
-	direction = navigation.get_next_path_position() - enemy_parent.global_position
+	direction = enemy_parent.global_position.direction_to(navigation.get_next_path_position())
 	direction = direction.normalized()
 
-	enemy_parent.velocity = Vector2.ZERO
+	#enemy_parent.velocity = Vector2.ZERO
 	enemy_parent.velocity = direction * speed
 
-	if target.x - enemy_parent.global_position.x < 3:
-		get_point()
-	if target.y - enemy_parent.global_position.y < 3:
+	if enemy_parent.global_position.distance_to(target) < 3:
 		get_point()
 
 	enemy_parent.move_and_slide()
@@ -33,5 +31,6 @@ func physics_update(_delta:float):
 func get_point():
 	var random_point = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1,false)
 
-	target.x = randf_range(-random_point.x,random_point.x)
-	target.y = randf_range(-random_point.y,random_point.y)
+	target = random_point
+	#target.x = randf_range(-random_point.x,random_point.x)
+	#target.y = randf_range(-random_point.y,random_point.y)

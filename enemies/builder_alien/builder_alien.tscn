@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b78fe6gubyukd" path="res://components/state/state_machine.tscn" id="1_18hia"]
 [ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="1_qglad"]
 [ext_resource type="Script" path="res://enemies/builder_alien/states/builderAvoid.gd" id="2_lw21r"]
-[ext_resource type="Script" path="res://builderIdle.gd" id="4_x6qwj"]
+[ext_resource type="Script" path="res://enemies/builder_alien/states/builderIdle.gd" id="4_x6qwj"]
 [ext_resource type="Script" path="res://enemies/builder_alien/states/builderMove.gd" id="5_71jhu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n3wha"]
@@ -39,7 +39,7 @@ spd = 20
 script = ExtResource("5_71jhu")
 enemy_parent = NodePath("../..")
 navigation = NodePath("../../NavigationAgent2D")
-speed = 20
+speed = 100
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
