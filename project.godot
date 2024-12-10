@@ -26,4 +26,4 @@ window/stretch/mode="canvas_items"
 textures/canvas_textures/default_texture_filter=0
 limits/opengl/max_renderable_lights=256
 limits/opengl/max_lights_per_object=1024
-environment/defaults/default_clear_color=Color(0.239216, 0.278431, 0.313726, 1)
+environment/defaults/default_clear_color=Color(0.0588235, 0.0588235, 0.0627451, 1)
