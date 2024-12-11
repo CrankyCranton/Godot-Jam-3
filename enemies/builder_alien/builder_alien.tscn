@@ -39,7 +39,7 @@ spd = 20
 script = ExtResource("5_71jhu")
 enemy_parent = NodePath("../..")
 navigation = NodePath("../../NavigationAgent2D")
-speed = 20
+speed = 100
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

@@ -18,3 +18,7 @@ position = Vector2(172, 151)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["navigation"]]
 position = Vector2(-126, 446)
 navigation_polygon = SubResource("NavigationPolygon_rynre")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(317, 292)
+zoom = Vector2(0.2, 0.2)

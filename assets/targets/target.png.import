@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xlhy665mvtt2"
-path="res://.godot/imported/circut_board.png-40bfd196a3703e64a29b5e9e8c689b42.ctex"
+uid="uid://bupyghx03ilqt"
+path="res://.godot/imported/target.png-e46f46d6f8e5f548aea9d3de8df4fd96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/circut_board/circut_board.png"
-dest_files=["res://.godot/imported/circut_board.png-40bfd196a3703e64a29b5e9e8c689b42.ctex"]
+source_file="res://assets/targets/target.png"
+dest_files=["res://.godot/imported/target.png-e46f46d6f8e5f548aea9d3de8df4fd96.ctex"]
 
 [params]
 
