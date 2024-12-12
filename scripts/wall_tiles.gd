@@ -5,7 +5,6 @@ func _ready() -> void:
 	for cell in get_used_cells():
 		process_cell(cell)
 
-
 func process_cell(cell: Vector2i) -> void:
 	var tile_data := get_cell_tile_data(cell)
 	if tile_data:
