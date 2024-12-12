@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctgr7axmy02lu"]
+
+[ext_resource type="Texture2D" uid="uid://b15iuxtafb8vj" path="res://assets/lights/laser/laser_start.png" id="1_l4eei"]
+[ext_resource type="Script" path="res://scripts/laser_beam.gd" id="2_3xspc"]
+[ext_resource type="Texture2D" uid="uid://dij3lgprs53rp" path="res://assets/lights/laser/laser_beam.png" id="2_nrwgj"]
+[ext_resource type="Texture2D" uid="uid://0ct6alhj5r0r" path="res://assets/lights/laser/laser_end.png" id="3_xclth"]
+[ext_resource type="Texture2D" uid="uid://bky2lbhp66a1t" path="res://assets/lights/laser/laser_end_2.png" id="5_gj454"]
+
+[node name="LaserBeam" type="RayCast2D"]
+top_level = true
+target_position = Vector2(0, 0)
+hit_from_inside = true
+script = ExtResource("2_3xspc")
+
+[node name="LaserStart" type="PointLight2D" parent="."]
+position = Vector2(-5.5, 0)
+energy = 10.0
+texture = ExtResource("1_l4eei")
+
+[node name="LaserMiddle" type="PointLight2D" parent="."]
+energy = 10.0
+texture = ExtResource("2_nrwgj")
+
+[node name="LaserEnd" type="PointLight2D" parent="."]
+energy = 10.0
+texture = ExtResource("3_xclth")
+offset = Vector2(0.5, 0)
+
+[node name="LaserEnd2" type="PointLight2D" parent="."]
+visible = false
+energy = 10.0
+texture = ExtResource("5_gj454")
+offset = Vector2(0.5, 0)
