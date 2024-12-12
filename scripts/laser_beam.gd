@@ -2,8 +2,9 @@ class_name LaserBeam extends RayCast2D
 
 
 @export var bounce_randomization := 30.0
-@export var remaining_length := 1024.0
+@export var remaining_length := 256.0
 @export var remaining_bounces := 10
+@export var fade_duration := 1.0
 
 @onready var laser_middle: PointLight2D = $LaserMiddle
 @onready var laser_end: PointLight2D = $LaserEnd
@@ -13,22 +14,48 @@ class_name LaserBeam extends RayCast2D
 func _ready() -> void:
 	target_position.x = remaining_length
 	await get_tree().physics_frame
-	force_raycast_update()
 
-	if is_colliding():
-		var length := global_position.distance_to(get_collision_point())
-		laser_end.position.x = length
-		set_laser_length(length)
-		remaining_length -= length
-		if remaining_length > 0 and remaining_bounces > 0:
-			var wall_margin := global_transform.x.normalized()
-			bounce(get_collision_point() - wall_margin, get_collision_normal())
-	else:
-		laser_end.hide()
-		laser_end_2.show()
-		var length := target_position.length()
-		laser_end_2.position.x = length
-		set_laser_length(length)
+	while true:
+		force_raycast_update()
+		if is_colliding():
+			var collider := get_collider()
+			if collider is Wall or collider is Target:
+				var length := global_position.distance_to(get_collision_point())
+				laser_end.position.x = length
+				set_laser_length(length)
+				remaining_length -= length
+				if remaining_length > 0 and remaining_bounces > 0:
+					var wall_margin := global_transform.x.normalized()
+					bounce(get_collision_point() - wall_margin, get_collision_normal())
+				break
+			else:
+				add_exception(collider)
+				hurt(collider)
+				continue
+		else:
+			laser_end.hide()
+			laser_end_2.show()
+			var length := target_position.length()
+			laser_end_2.position.x = length
+			set_laser_length(length)
+			break
+	fade()
+
+
+func fade() -> void:
+	for child in get_children():
+		if child is PointLight2D:
+			create_tween().tween_property(child, ^"energy", 0.0, fade_duration).finished
+	await get_tree().create_timer(fade_duration, false).timeout
+	queue_free()
+
+
+func hurt(what: Object) -> void:
+	pass
+#	if what is Player:
+#		print("You lose! Sucker! :p")
+#	else:
+#		print("Alien murder! This is racial descrimination!")
 
 
 func set_laser_length(length: float) -> void:

@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bbeevbiong0h2" path="res://scenes/explosion.tscn" id="13_i1gal"]
 [ext_resource type="Texture2D" uid="uid://bs8ld2eunvqgi" path="res://assets/particles/explosion/explosion.png" id="16_ssc7c"]
 [ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="17_fi1d3"]
-[ext_resource type="PackedScene" uid="uid://ctgr7axmy02lu" path="res://scenes/laser_beam.tscn" id="18_wt2rj"]
+[ext_resource type="PackedScene" uid="uid://dl5w1mq85c82p" path="res://scenes/items/gun.tscn" id="18_t80qv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj53s"]
 texture = ExtResource("1_hm024")
@@ -570,7 +570,6 @@ texture = ExtResource("5_sk122")
 metadata/_edit_group_ = true
 
 [node name="ItemGlow" type="PointLight2D" parent="LaserGun"]
-visible = false
 texture = ExtResource("6_bkpu8")
 
 [node name="Alien" type="Sprite2D" parent="."]
@@ -638,5 +637,5 @@ texture = ExtResource("3_ah3je")
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_232dr")
 
-[node name="LaserBeam" parent="." instance=ExtResource("18_wt2rj")]
-position = Vector2(66, 35)
+[node name="Gun" parent="." instance=ExtResource("18_t80qv")]
+position = Vector2(13, 26)

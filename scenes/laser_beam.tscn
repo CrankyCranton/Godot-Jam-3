@@ -8,6 +8,7 @@
 
 [node name="LaserBeam" type="RayCast2D"]
 top_level = true
+enabled = false
 target_position = Vector2(0, 0)
 hit_from_inside = true
 script = ExtResource("2_3xspc")
