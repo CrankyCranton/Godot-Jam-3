@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y = move_toward(velocity.y,input_direction.y * speed,accel)
 
 	move_and_slide()
-	gun.look_at(get_global_mouse_position())
+	#gun.look_at(get_global_mouse_position())
 
 	if Input.is_action_just_pressed("Grenade") and number_of_bombs > 0:
 		var grenade: RigidBody2D = grenade_load.instantiate()
