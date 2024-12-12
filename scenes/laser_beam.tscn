@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctgr7axmy02lu"]
+[gd_scene load_steps=6 format=3 uid="uid://blx0sgigqrmye"]
 
 [ext_resource type="Texture2D" uid="uid://b15iuxtafb8vj" path="res://assets/lights/laser/laser_start.png" id="1_l4eei"]
 [ext_resource type="Script" path="res://scripts/laser_beam.gd" id="2_3xspc"]
