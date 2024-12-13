@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc1q4h0uk8ohu"]
+
+[ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="1_imk3o"]
+[ext_resource type="Texture2D" uid="uid://bupyghx03ilqt" path="res://assets/targets/target.png" id="2_gfa5e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcfyl"]
+size = Vector2(10, 6)
+
+[node name="BasicTarget" groups=["basic_targets"] instance=ExtResource("1_imk3o")]
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_gfa5e")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("RectangleShape2D_mcfyl")

@@ -6,17 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://cuila53tv68je" path="res://scenes/tile_stuff/wall.tscn" id="2_sivfd"]
 [ext_resource type="Texture2D" uid="uid://c7jggusv52vr2" path="res://assets/items/gas_can/gas_can.png" id="3_ah3je"]
 [ext_resource type="Texture2D" uid="uid://bsooutmtd8f2s" path="res://assets/items/grenade/grenade.png" id="4_blhkw"]
+[ext_resource type="PackedScene" uid="uid://dc1q4h0uk8ohu" path="res://scenes/targets/basic_target.tscn" id="4_ci8hg"]
 [ext_resource type="Texture2D" uid="uid://c03srpav2opc7" path="res://assets/items/laser_gun/laser_gun.png" id="5_sk122"]
 [ext_resource type="Texture2D" uid="uid://dc6numek7ase5" path="res://assets/lights/item_glow/item_glow.png" id="6_bkpu8"]
 [ext_resource type="Texture2D" uid="uid://cpv6honmno36t" path="res://assets/alien/alien.png" id="7_pmbjv"]
 [ext_resource type="Texture2D" uid="uid://cs5f7dqc1w4yu" path="res://assets/targets/command_panel/command_panel.png" id="8_c6e1i"]
 [ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/lights/area_glow/area_glow.png" id="10_iyg4v"]
-[ext_resource type="Texture2D" uid="uid://xlhy665mvtt2" path="res://assets/targets/circut_board/circut_board.png" id="11_hmf1d"]
 [ext_resource type="Texture2D" uid="uid://dmqjq6ybbi583" path="res://assets/targets/refrigerator/refrigerator.png" id="12_rl645"]
 [ext_resource type="PackedScene" uid="uid://bbeevbiong0h2" path="res://scenes/explosion.tscn" id="13_i1gal"]
 [ext_resource type="Texture2D" uid="uid://bs8ld2eunvqgi" path="res://assets/particles/explosion/explosion.png" id="16_ssc7c"]
-[ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="17_fi1d3"]
 [ext_resource type="PackedScene" uid="uid://dl5w1mq85c82p" path="res://scenes/items/gun.tscn" id="18_t80qv"]
+[ext_resource type="PackedScene" uid="uid://clupn72re2n0v" path="res://scenes/targets/curcuit_board.tscn" id="19_q10pw"]
+[ext_resource type="PackedScene" uid="uid://bniqxuw3nf758" path="res://scenes/pause_screen.tscn" id="19_w371y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj53s"]
 texture = ExtResource("1_hm024")
@@ -484,9 +485,6 @@ blend_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fy13x"]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fr7cx"]
-polygon = PackedVector2Array(-16, -6, -16, 8, 16, 8, 16, -6)
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7kugd"]
 friction = 0.5
 bounce = 0.5
@@ -509,20 +507,20 @@ rendering_quadrant_size = 1
 tile_map_data = PackedByteArray("AAABAAAAAAABAAQAAAADAAAAAAACAAQAAAAGAAQAAAACAAQAAAA=")
 tile_set = SubResource("TileSet_wuttn")
 
-[node name="Target" parent="." instance=ExtResource("17_fi1d3")]
-position = Vector2(136, 95)
-
-[node name="Target2" parent="." instance=ExtResource("17_fi1d3")]
+[node name="BasicTarget" parent="." instance=ExtResource("4_ci8hg")]
 position = Vector2(184, 24)
 
-[node name="Target3" parent="." instance=ExtResource("17_fi1d3")]
-position = Vector2(120, 24)
+[node name="BasicTarget2" parent="." instance=ExtResource("4_ci8hg")]
+position = Vector2(136, 72)
 
-[node name="Target4" parent="." instance=ExtResource("17_fi1d3")]
-position = Vector2(152, 24)
+[node name="BasicTarget3" parent="." instance=ExtResource("4_ci8hg")]
+position = Vector2(40, 184)
 
-[node name="Target5" parent="." instance=ExtResource("17_fi1d3")]
-position = Vector2(184, 55)
+[node name="BasicTarget4" parent="." instance=ExtResource("4_ci8hg")]
+position = Vector2(8, 72)
+
+[node name="BasicTarget5" parent="." instance=ExtResource("4_ci8hg")]
+position = Vector2(184, 72)
 
 [node name="Explosion4" type="Sprite2D" parent="."]
 modulate = Color(0.25, 0.25, 0.25, 1)
@@ -573,20 +571,6 @@ texture = ExtResource("6_bkpu8")
 position = Vector2(84, 19)
 texture = ExtResource("7_pmbjv")
 
-[node name="CircutBoard" type="Sprite2D" parent="."]
-position = Vector2(80, 108)
-texture = ExtResource("11_hmf1d")
-metadata/_edit_group_ = true
-
-[node name="PointLight2D" type="PointLight2D" parent="CircutBoard"]
-position = Vector2(0, -3)
-color = Color(0.972549, 0.117647, 0.360784, 1)
-texture = ExtResource("10_iyg4v")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="CircutBoard"]
-position = Vector2(0, -4)
-occluder = SubResource("OccluderPolygon2D_fr7cx")
-
 [node name="CommandPanel" type="Sprite2D" parent="."]
 position = Vector2(145, 132)
 texture = ExtResource("8_c6e1i")
@@ -610,7 +594,7 @@ energy = 0.75
 texture = ExtResource("10_iyg4v")
 
 [node name="Explosion" parent="." instance=ExtResource("13_i1gal")]
-position = Vector2(32, 141)
+position = Vector2(55, 129)
 
 [node name="Explosion2" parent="." instance=ExtResource("13_i1gal")]
 position = Vector2(149, 38)
@@ -635,4 +619,13 @@ position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_232dr")
 
 [node name="Gun" parent="." instance=ExtResource("18_t80qv")]
+<<<<<<< HEAD
 position = Vector2(163, 95)
+=======
+position = Vector2(13, 26)
+
+[node name="PauseScreen" parent="." instance=ExtResource("19_w371y")]
+
+[node name="CurcuitBoard" parent="." instance=ExtResource("19_q10pw")]
+position = Vector2(80, 108)
+>>>>>>> b5f6cbae43d138af81adf80baf86eb940d34b983

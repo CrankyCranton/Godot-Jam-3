@@ -45,7 +45,7 @@ func _ready() -> void:
 func fade() -> void:
 	for child in get_children():
 		if child is PointLight2D:
-			create_tween().tween_property(child, ^"energy", 0.0, fade_duration).finished
+			create_tween().tween_property(child, ^"energy", 0.0, fade_duration)
 	await get_tree().create_timer(fade_duration, false).timeout
 	queue_free()
 
