@@ -56,4 +56,4 @@ func _on_dash_timer_timeout() -> void:
 	can_dash = true
 
 func remove_task(indx:int):
-	$CanvasLayer/Task_list.remove_task(2)
+	$CanvasLayer/Task_list.remove_task(indx)
