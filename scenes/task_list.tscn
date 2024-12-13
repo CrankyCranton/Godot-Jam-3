@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0k8ilvat2ipt"]
+[gd_scene load_steps=3 format=3 uid="uid://b0k8ilvat2ipt"]
 
 [ext_resource type="Script" path="res://scenes/task_list.gd" id="1_crn1h"]
+[ext_resource type="Theme" uid="uid://c0dstatoqgw66" path="res://assets/theme.theme" id="1_n1en7"]
 
 [node name="Task_list" type="VBoxContainer"]
 anchors_preset = 15
@@ -8,19 +9,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_n1en7")
 script = ExtResource("1_crn1h")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
 text = "Destroy Circuit Panel"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
 text = "Destroy Command Panel"
 
 [node name="Label3" type="Label" parent="."]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
 text = "Destroy Cryo Chamber"

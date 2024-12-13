@@ -5,6 +5,16 @@ extends CharacterBody2D
 
 @onready var camera:Camera2D = $Camera2D
 @onready var dash_timer:Timer = $DashTimer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get(&"parameters/playback")
+@onready var anim_dir:Vector2 = Vector2():
+	set(value):
+		anim_dir = value
+		animation_tree.set(&"parameters/Idle/blend_position", anim_dir)
+		animation_tree.set(&"parameters/Punch/blend_position", anim_dir)
+		animation_tree.set(&"parameters/Run/blend_position", anim_dir)
+		animation_tree.set(&"parameters/Throw/blend_position", anim_dir)
+
 #@onready var gun:Node2D = $Gun
 
 var number_of_bombs:int = 2
@@ -15,7 +25,11 @@ var grenade_load:PackedScene = preload("res://player/explosive/explosive.tscn")
 
 func _physics_process(delta: float) -> void:
 	var input_direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down").limit_length()
-
+	if input_direction != Vector2.ZERO:
+		anim_dir = input_direction
+		playback.travel(&"Run")
+	else:
+		playback.travel(&"Idle")
 	velocity.x = move_toward(velocity.x,input_direction.x * speed,accel)
 	velocity.y = move_toward(velocity.y,input_direction.y * speed,accel)
 
