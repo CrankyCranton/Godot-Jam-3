@@ -1,33 +1,26 @@
-[gd_scene format=3 uid="uid://b0k8ilvat2ipt"]
+[gd_scene load_steps=2 format=3 uid="uid://b0k8ilvat2ipt"]
 
-[node name="Task_list" type="Control"]
-layout_mode = 3
+[ext_resource type="Script" path="res://scenes/task_list.gd" id="1_crn1h"]
+
+[node name="Task_list" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_crn1h")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 91.0
-offset_bottom = 48.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 93.0
-offset_bottom = 56.0
-
-[node name="ItemList" type="ItemList" parent="Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
-max_text_lines = 3
-auto_height = true
-text_overrun_behavior = 0
-item_count = 2
-icon_mode = 0
-item_0/text = "Destroy Power Plant"
-item_1/text = "Destroy Controls"
+theme_override_font_sizes/font_size = 9
+text = "Destroy Circuit Panel"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="Label2" type="Label" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Destroy Command Panel"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Destroy Cryo Chamber"

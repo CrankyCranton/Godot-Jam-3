@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfd183gq6qrn5"]
+
+[ext_resource type="Script" path="res://scenes/targets/circuit_board.gd" id="1_fp3my"]
+[ext_resource type="Texture2D" uid="uid://xlhy665mvtt2" path="res://assets/targets/circut_board/circut_board.png" id="1_hsq0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xd5bw"]
+size = Vector2(32, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58r1i"]
+size = Vector2(40, 22)
+
+[node name="Circuit_board" type="StaticBody2D"]
+script = ExtResource("1_fp3my")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_xd5bw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hsq0c")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_58r1i")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
