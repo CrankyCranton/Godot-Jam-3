@@ -3,14 +3,15 @@ class_name builderMove
 
 @export var enemy_parent:CharacterBody2D
 @export var navigation:NavigationAgent2D
-var navigation_region:NavigationRegion2D
+var navigation_region
 
 @export var speed:int
 
 var target:Vector2
 
 func Enter():
-	navigation_region = get_tree().get_first_node_in_group("navigation")
+	navigation_region = Global.floor_tiles.get_navigation_map()
+	print(navigation_region)
 	get_point()
 
 func physics_update(_delta:float):
@@ -31,7 +32,8 @@ func physics_update(_delta:float):
 	enemy_parent.move_and_slide()
 
 func get_point():
-	var random_point = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1,false)
+	print(NavigationServer2D)
+	var random_point = NavigationServer2D.region_get_random_point(navigation_region,1,false)
 
 	target.x = randf_range(-random_point.x,random_point.x)
 	target.y = randf_range(-random_point.y,random_point.y)

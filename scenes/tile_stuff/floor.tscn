@@ -1,6 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dugnkc5e0uj6b"]
+[gd_scene load_steps=7 format=3 uid="uid://dugnkc5e0uj6b"]
 
 [ext_resource type="Texture2D" uid="uid://crermxvfbtk3f" path="res://assets/tiles/tiles.png" id="1_cktxt"]
+[ext_resource type="PackedScene" uid="uid://bio6gs3xosfme" path="res://scenes/tile_stuff/bomb_detector.tscn" id="2_cooif"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h2lyn"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eug31"]
 texture = ExtResource("1_cktxt")
@@ -193,7 +200,9 @@ texture = ExtResource("1_cktxt")
 20:7/0 = 0
 21:7/0 = 0
 0:8/0 = 0
+0:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h2lyn")
 1:8/0 = 0
+1:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h2lyn")
 2:8/0 = 0
 3:8/0 = 0
 4:8/0 = 0
@@ -208,6 +217,7 @@ texture = ExtResource("1_cktxt")
 16:8/0 = 0
 17:8/0 = 0
 0:9/0 = 0
+0:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h2lyn")
 8:9/0 = 0
 9:9/0 = 0
 11:9/0 = 0
@@ -217,10 +227,16 @@ texture = ExtResource("1_cktxt")
 16:9/0 = 0
 17:9/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_hhtm5"]
+resource_name = "bomb"
+scenes/1/scene = ExtResource("2_cooif")
+
 [sub_resource type="TileSet" id="TileSet_0q3yp"]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_eug31")
+sources/1 = SubResource("TileSetScenesCollectionSource_hhtm5")
 
 [node name="floor" type="TileMapLayer"]
 tile_set = SubResource("TileSet_0q3yp")

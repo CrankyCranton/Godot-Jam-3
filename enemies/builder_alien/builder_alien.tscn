@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvvipuf122uv2"]
+[gd_scene load_steps=8 format=3 uid="uid://bvvipuf122uv2"]
 
 [ext_resource type="PackedScene" uid="uid://b78fe6gubyukd" path="res://components/state/state_machine.tscn" id="1_18hia"]
 [ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="1_qglad"]
@@ -6,12 +6,19 @@
 [ext_resource type="Script" path="res://enemies/builder_alien/states/builderIdle.gd" id="4_x6qwj"]
 [ext_resource type="Script" path="res://enemies/builder_alien/states/builderMove.gd" id="5_71jhu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgkk8"]
+size = Vector2(49, 48)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_n3wha"]
 radius = 120.204
 
 [node name="builder_alien" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_mgkk8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
@@ -39,7 +46,7 @@ spd = 20
 script = ExtResource("5_71jhu")
 enemy_parent = NodePath("../..")
 navigation = NodePath("../../NavigationAgent2D")
-speed = 100
+speed = 20
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

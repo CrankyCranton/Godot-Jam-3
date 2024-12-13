@@ -1,38 +1,21 @@
-[gd_scene load_steps=9 format=4 uid="uid://bh56rhb2q2hvu"]
+[gd_scene load_steps=5 format=3 uid="uid://bh56rhb2q2hvu"]
 
 [ext_resource type="Script" path="res://scripts/test(just for test).gd" id="1_stjcm"]
 [ext_resource type="PackedScene" uid="uid://bgou0u66jm82e" path="res://player/player.tscn" id="1_y6krj"]
-[ext_resource type="PackedScene" uid="uid://dddb85tuer0m3" path="res://scenes/tile_stuff/walls_tiles.tscn" id="2_44gox"]
-[ext_resource type="PackedScene" uid="uid://bio6gs3xosfme" path="res://scenes/tile_stuff/bomb_detector.tscn" id="3_lidd0"]
-[ext_resource type="PackedScene" uid="uid://w2swkfj75etp" path="res://scenes/tile_stuff/void.tscn" id="5_7gjfm"]
+[ext_resource type="PackedScene" uid="uid://bvvipuf122uv2" path="res://enemies/builder_alien/builder_alien.tscn" id="3_3ynci"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_rynre"]
-vertices = PackedVector2Array(743.156, -355.047, 701.828, 107.219, 156.094, 120.742, 160.898, -414.922)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lesxe"]
+vertices = PackedVector2Array(304.109, 18.9297, 305.867, 164.961, 13.2969, 164.031, 17.7031, 17.0625)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(151, -426, 754, -364, 711, 117, 146, 131)])
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wiip4"]
-resource_name = "bomb"
-scenes/1/scene = ExtResource("3_lidd0")
-
-[sub_resource type="TileSet" id="TileSet_gmv1u"]
-sources/0 = SubResource("TileSetScenesCollectionSource_wiip4")
+outlines = Array[PackedVector2Array]([PackedVector2Array(8, 7, 314, 9, 316, 175, 3, 174)])
 
 [node name="test" type="Node2D"]
 script = ExtResource("1_stjcm")
 
 [node name="player" parent="." instance=ExtResource("1_y6krj")]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["navigation"]]
-position = Vector2(-126, 446)
-navigation_polygon = SubResource("NavigationPolygon_rynre")
+[node name="builder_alien" parent="." instance=ExtResource("3_3ynci")]
+position = Vector2(142, 60)
 
-[node name="Walls" parent="." instance=ExtResource("2_44gox")]
-tile_map_data = PackedByteArray("AAD9////AAAKAAAAAAD9/wEAAAAKAAAAAAD8/wIAAAAKAAAAAAD8/wMAAAAKAAAAAAD9/wMAAAAKAAAAAAD8/wEAAAAKAAAAAAD+////AAAKAAAAAAD+/wMAAAAKAAAAAAACAAAAAAADAAAAAAAEAAAAAAAFAAAAAAAFAAAAAAAGAAAAAAAGAAAAAAAHAAAAAAAHAAAAAAAIAAAAAAAIAAAAAAADAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAAFAAAAAAAKAAEAAAADAAAAAFAKAAIAAAAEAAAAAFAKAAMAAAAFAAAAAFAKAAQAAAAGAAAAAFAKAAUAAAAHAAAAAFAKAAYAAAAIAAAAAFAHAAIAAAADAAAAAFAHAAMAAAAEAAAAAFAHAAQAAAAFAAAAAFAHAAUAAAAGAAAAAFAHAAYAAAAHAAAAAFAHAAcAAAAIAAAAAFADAAEAAAADAAAAAFADAAIAAAAEAAAAAFADAAMAAAAFAAAAAFADAAQAAAAGAAAAAFADAAUAAAAHAAAAAFADAAYAAAAIAAAAAFADAAAAAAAEAAAAAAA=")
-
-[node name="bomb_detector" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAEAAAAAAAAAAAAAQAFAAAAAAAAAAAAAQAGAAAAAAAAAAAAAQAHAAAAAAAAAAAAAQAIAAAAAAAAAAAAAQAJAAAAAAAAAAAAAQAKAAAAAAAAAAAAAQALAAAAAAAAAAAAAQAMAAAAAAAAAAAAAQANAAAAAAAAAAAAAQAOAAAAAAAAAAAAAQAPAAAAAAAAAAAAAQAQAAAAAAAAAAAAAQARAAAAAAAAAAAAAQASAAAAAAAAAAAAAQATAAAAAAAAAAAAAQAUAAAAAAAAAAAAAQAVAAAAAAAAAAAAAQAHAAIAAAAAAAAAAQAHAAMAAAAAAAAAAQAHAAQAAAAAAAAAAQAHAAUAAAAAAAAAAQAHAAYAAAAAAAAAAQAHAAcAAAAAAAAAAQAHAAgAAAAAAAAAAQAHAAkAAAAAAAAAAQAHAAoAAAAAAAAAAQAHAAsAAAAAAAAAAQAHAAwAAAAAAAAAAQAHAA0AAAAAAAAAAQAPAA8AAAAAAAAAAQAPAA4AAAAAAAAAAQAPAA0AAAAAAAAAAQAPAAwAAAAAAAAAAQAPAAsAAAAAAAAAAQAPAAoAAAAAAAAAAQAPAAkAAAAAAAAAAQAPAAgAAAAAAAAAAQAPAAcAAAAAAAAAAQAPAAYAAAAAAAAAAQAPAAUAAAAAAAAAAQAPAAQAAAAAAAAAAQAVAAIAAAAAAAAAAQAVAAMAAAAAAAAAAQAVAAQAAAAAAAAAAQAVAAUAAAAAAAAAAQAVAAYAAAAAAAAAAQAVAAcAAAAAAAAAAQAVAAgAAAAAAAAAAQAVAAkAAAAAAAAAAQAVAAoAAAAAAAAAAQAVAAsAAAAAAAAAAQAVAAwAAAAAAAAAAQAVAA0AAAAAAAAAAQA=")
-tile_set = SubResource("TileSet_gmv1u")
-
-[node name="Void" parent="." instance=ExtResource("5_7gjfm")]
-position = Vector2(182, 136)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_lesxe")
