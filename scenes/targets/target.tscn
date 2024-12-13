@@ -1,11 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6ughf8ggsrsr"]
+[gd_scene load_steps=6 format=3 uid="uid://c6ughf8ggsrsr"]
 
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="1_x2qv7"]
-[ext_resource type="Texture2D" uid="uid://bupyghx03ilqt" path="res://assets/targets/target.png" id="2_wkq8n"]
 [ext_resource type="Texture2D" uid="uid://ddu58a3dq2r1a" path="res://assets/lights/area_glow/area_glow.png" id="3_1bvdw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bxr3"]
-size = Vector2(10, 6)
+[sub_resource type="Animation" id="Animation_cco7r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.75]
+}
 
 [sub_resource type="Animation" id="Animation_hpa2j"]
 resource_name = "destroy"
@@ -36,33 +59,6 @@ tracks/1/keys = {
 "values": [0.75, 2.25, 0.19, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_cco7r"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Light:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.75]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tbk6l"]
 _data = {
 "RESET": SubResource("Animation_cco7r"),
@@ -73,7 +69,6 @@ _data = {
 script = ExtResource("1_x2qv7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_wkq8n")
 hframes = 2
 
 [node name="Light" type="PointLight2D" parent="."]
@@ -83,9 +78,9 @@ energy = 0.75
 texture = ExtResource("3_1bvdw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0bxr3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_tbk6l")
 }

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://clupn72re2n0v"]
+
+[ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="1_0b566"]
+[ext_resource type="Texture2D" uid="uid://xlhy665mvtt2" path="res://assets/targets/circut_board/circut_board.png" id="2_1ptcx"]
+[ext_resource type="Script" path="res://scenes/targets/curcuit_board.gd" id="2_vw7ln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh1ya"]
+size = Vector2(32, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b7v2g"]
+polygon = PackedVector2Array(-16, -10, -16, 4, 16, 4, 16, -10)
+
+[node name="CurcuitBoard" instance=ExtResource("1_0b566")]
+script = ExtResource("2_vw7ln")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_1ptcx")
+
+[node name="Light" parent="." index="1"]
+position = Vector2(0, -3)
+color = Color(0.980392, 0.176471, 0.517647, 1)
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("RectangleShape2D_oh1ya")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
+occluder = SubResource("OccluderPolygon2D_b7v2g")
