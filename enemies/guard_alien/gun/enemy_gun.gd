@@ -9,4 +9,3 @@ func shoot(direction):
 	bullet_ins.rotation = direction
 	bullet_ins.position = global_position
 	get_tree().root.call_deferred("add_child",bullet_ins)
-	
