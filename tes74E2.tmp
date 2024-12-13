@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=4 uid="uid://bh56rhb2q2hvu"]
+
+[ext_resource type="Script" path="res://scripts/test(just for test).gd" id="1_stjcm"]
+[ext_resource type="PackedScene" uid="uid://bgou0u66jm82e" path="res://player/player.tscn" id="1_y6krj"]
+[ext_resource type="PackedScene" uid="uid://dddb85tuer0m3" path="res://scenes/tile_stuff/walls_tiles.tscn" id="2_44gox"]
+[ext_resource type="PackedScene" uid="uid://bio6gs3xosfme" path="res://scenes/tile_stuff/bomb_detector.tscn" id="3_lidd0"]
+[ext_resource type="PackedScene" uid="uid://w2swkfj75etp" path="res://scenes/tile_stuff/void.tscn" id="5_7gjfm"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rynre"]
+vertices = PackedVector2Array(743.156, -355.047, 701.828, 107.219, 156.094, 120.742, 160.898, -414.922)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(151, -426, 754, -364, 711, 117, 146, 131)])
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wiip4"]
+resource_name = "bomb"
+scenes/1/scene = ExtResource("3_lidd0")
+
+[sub_resource type="TileSet" id="TileSet_gmv1u"]
+sources/0 = SubResource("TileSetScenesCollectionSource_wiip4")
+
+[node name="test" type="Node2D"]
+script = ExtResource("1_stjcm")
+
+[node name="player" parent="." instance=ExtResource("1_y6krj")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["navigation"]]
+position = Vector2(-126, 446)
+navigation_polygon = SubResource("NavigationPolygon_rynre")
+
+[node name="Walls" parent="." instance=ExtResource("2_44gox")]
+tile_map_data = PackedByteArray("AAD9////AAAKAAAAAAD9/wEAAAAKAAAAAAD8/wIAAAAKAAAAAAD8/wMAAAAKAAAAAAD9/wMAAAAKAAAAAAD8/wEAAAAKAAAAAAD+////AAAKAAAAAAD+/wMAAAAKAAAAAAACAAAAAAADAAAAAAAEAAAAAAAFAAAAAAAFAAAAAAAGAAAAAAAGAAAAAAAHAAAAAAAHAAAAAAAIAAAAAAAIAAAAAAADAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAAFAAAAAAAKAAEAAAADAAAAAFAKAAIAAAAEAAAAAFAKAAMAAAAFAAAAAFAKAAQAAAAGAAAAAFAKAAUAAAAHAAAAAFAKAAYAAAAIAAAAAFAHAAIAAAADAAAAAFAHAAMAAAAEAAAAAFAHAAQAAAAFAAAAAFAHAAUAAAAGAAAAAFAHAAYAAAAHAAAAAFAHAAcAAAAIAAAAAFADAAEAAAADAAAAAFADAAIAAAAEAAAAAFADAAMAAAAFAAAAAFADAAQAAAAGAAAAAFADAAUAAAAHAAAAAFADAAYAAAAIAAAAAFADAAAAAAAEAAAAAAA=")
+
+[node name="bomb_detector" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEAAAAAAAAAAAAAQAFAAAAAAAAAAAAAQAGAAAAAAAAAAAAAQAHAAAAAAAAAAAAAQAIAAAAAAAAAAAAAQAJAAAAAAAAAAAAAQAKAAAAAAAAAAAAAQALAAAAAAAAAAAAAQAMAAAAAAAAAAAAAQANAAAAAAAAAAAAAQAOAAAAAAAAAAAAAQAPAAAAAAAAAAAAAQAQAAAAAAAAAAAAAQARAAAAAAAAAAAAAQASAAAAAAAAAAAAAQATAAAAAAAAAAAAAQAUAAAAAAAAAAAAAQAVAAAAAAAAAAAAAQAHAAIAAAAAAAAAAQAHAAMAAAAAAAAAAQAHAAQAAAAAAAAAAQAHAAUAAAAAAAAAAQAHAAYAAAAAAAAAAQAHAAcAAAAAAAAAAQAHAAgAAAAAAAAAAQAHAAkAAAAAAAAAAQAHAAoAAAAAAAAAAQAHAAsAAAAAAAAAAQAHAAwAAAAAAAAAAQAHAA0AAAAAAAAAAQAPAA8AAAAAAAAAAQAPAA4AAAAAAAAAAQAPAA0AAAAAAAAAAQAPAAwAAAAAAAAAAQAPAAsAAAAAAAAAAQAPAAoAAAAAAAAAAQAPAAkAAAAAAAAAAQAPAAgAAAAAAAAAAQAPAAcAAAAAAAAAAQAPAAYAAAAAAAAAAQAPAAUAAAAAAAAAAQAPAAQAAAAAAAAAAQAVAAIAAAAAAAAAAQAVAAMAAAAAAAAAAQAVAAQAAAAAAAAAAQAVAAUAAAAAAAAAAQAVAAYAAAAAAAAAAQAVAAcAAAAAAAAAAQAVAAgAAAAAAAAAAQAVAAkAAAAAAAAAAQAVAAoAAAAAAAAAAQAVAAsAAAAAAAAAAQAVAAwAAAAAAAAAAQAVAA0AAAAAAAAAAQA=")
+tile_set = SubResource("TileSet_gmv1u")
+
+[node name="Void" parent="." instance=ExtResource("5_7gjfm")]
+position = Vector2(182, 136)
+
+[connection signal="area_entered" from="bomb_detector/bomb_detector" to="bomb_detector/bomb_detector" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156837" to="bomb_detector/@Area2D@156837" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156838" to="bomb_detector/@Area2D@156838" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156839" to="bomb_detector/@Area2D@156839" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156840" to="bomb_detector/@Area2D@156840" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156841" to="bomb_detector/@Area2D@156841" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156842" to="bomb_detector/@Area2D@156842" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156843" to="bomb_detector/@Area2D@156843" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156844" to="bomb_detector/@Area2D@156844" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156845" to="bomb_detector/@Area2D@156845" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156846" to="bomb_detector/@Area2D@156846" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156847" to="bomb_detector/@Area2D@156847" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156848" to="bomb_detector/@Area2D@156848" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156849" to="bomb_detector/@Area2D@156849" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156850" to="bomb_detector/@Area2D@156850" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156851" to="bomb_detector/@Area2D@156851" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156852" to="bomb_detector/@Area2D@156852" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156853" to="bomb_detector/@Area2D@156853" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156854" to="bomb_detector/@Area2D@156854" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156855" to="bomb_detector/@Area2D@156855" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156856" to="bomb_detector/@Area2D@156856" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156857" to="bomb_detector/@Area2D@156857" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156858" to="bomb_detector/@Area2D@156858" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156859" to="bomb_detector/@Area2D@156859" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156860" to="bomb_detector/@Area2D@156860" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156861" to="bomb_detector/@Area2D@156861" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156862" to="bomb_detector/@Area2D@156862" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156863" to="bomb_detector/@Area2D@156863" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156864" to="bomb_detector/@Area2D@156864" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156865" to="bomb_detector/@Area2D@156865" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156866" to="bomb_detector/@Area2D@156866" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156867" to="bomb_detector/@Area2D@156867" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156868" to="bomb_detector/@Area2D@156868" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156869" to="bomb_detector/@Area2D@156869" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156870" to="bomb_detector/@Area2D@156870" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156871" to="bomb_detector/@Area2D@156871" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156872" to="bomb_detector/@Area2D@156872" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156873" to="bomb_detector/@Area2D@156873" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156874" to="bomb_detector/@Area2D@156874" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156875" to="bomb_detector/@Area2D@156875" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156876" to="bomb_detector/@Area2D@156876" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156877" to="bomb_detector/@Area2D@156877" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156878" to="bomb_detector/@Area2D@156878" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156879" to="bomb_detector/@Area2D@156879" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156880" to="bomb_detector/@Area2D@156880" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156881" to="bomb_detector/@Area2D@156881" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156882" to="bomb_detector/@Area2D@156882" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156883" to="bomb_detector/@Area2D@156883" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156884" to="bomb_detector/@Area2D@156884" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156885" to="bomb_detector/@Area2D@156885" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156886" to="bomb_detector/@Area2D@156886" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156887" to="bomb_detector/@Area2D@156887" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156888" to="bomb_detector/@Area2D@156888" method="_on_area_entered"]
+[connection signal="area_entered" from="bomb_detector/@Area2D@156889" to="bomb_detector/@Area2D@156889" method="_on_area_entered"]

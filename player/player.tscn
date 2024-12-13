@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgou0u66jm82e"]
+[gd_scene load_steps=6 format=3 uid="uid://bgou0u66jm82e"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_11ufu"]
 [ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="2_ws4fl"]
 [ext_resource type="Script" path="res://player/camera_2d.gd" id="3_x245e"]
+[ext_resource type="PackedScene" uid="uid://dl5w1mq85c82p" path="res://scenes/items/gun.tscn" id="4_r7ybj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2nbx"]
 
@@ -12,12 +13,20 @@ script = ExtResource("1_11ufu")
 speed = 70.0
 accel = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_c2nbx")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_ws4fl")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c2nbx")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_x245e")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Gun" parent="." instance=ExtResource("4_r7ybj")]
+position = Vector2(1, 0)
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

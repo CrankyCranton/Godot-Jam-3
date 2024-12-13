@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://bh56rhb2q2hvu"]
+[gd_scene load_steps=9 format=4 uid="uid://bh56rhb2q2hvu"]
 
 [ext_resource type="Script" path="res://scripts/test(just for test).gd" id="1_stjcm"]
 [ext_resource type="PackedScene" uid="uid://bgou0u66jm82e" path="res://player/player.tscn" id="1_y6krj"]
-[ext_resource type="PackedScene" uid="uid://dddb85tuer0m3" path="res://scenes/walls_tiles.tscn" id="2_44gox"]
-[ext_resource type="PackedScene" uid="uid://bio6gs3xosfme" path="res://scenes/bomb_detector.tscn" id="3_lidd0"]
+[ext_resource type="PackedScene" uid="uid://dddb85tuer0m3" path="res://scenes/tile_stuff/walls_tiles.tscn" id="2_44gox"]
+[ext_resource type="PackedScene" uid="uid://bio6gs3xosfme" path="res://scenes/tile_stuff/bomb_detector.tscn" id="3_lidd0"]
+[ext_resource type="PackedScene" uid="uid://w2swkfj75etp" path="res://scenes/tile_stuff/void.tscn" id="5_7gjfm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rynre"]
 vertices = PackedVector2Array(743.156, -355.047, 701.828, 107.219, 156.094, 120.742, 160.898, -414.922)
@@ -32,3 +33,6 @@ tile_map_data = PackedByteArray("AAD9////AAAKAAAAAAD9/wEAAAAKAAAAAAD8/wIAAAAKAAA
 [node name="bomb_detector" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAEAAAAAAAAAAAAAQAFAAAAAAAAAAAAAQAGAAAAAAAAAAAAAQAHAAAAAAAAAAAAAQAIAAAAAAAAAAAAAQAJAAAAAAAAAAAAAQAKAAAAAAAAAAAAAQALAAAAAAAAAAAAAQAMAAAAAAAAAAAAAQANAAAAAAAAAAAAAQAOAAAAAAAAAAAAAQAPAAAAAAAAAAAAAQAQAAAAAAAAAAAAAQARAAAAAAAAAAAAAQASAAAAAAAAAAAAAQATAAAAAAAAAAAAAQAUAAAAAAAAAAAAAQAVAAAAAAAAAAAAAQAHAAIAAAAAAAAAAQAHAAMAAAAAAAAAAQAHAAQAAAAAAAAAAQAHAAUAAAAAAAAAAQAHAAYAAAAAAAAAAQAHAAcAAAAAAAAAAQAHAAgAAAAAAAAAAQAHAAkAAAAAAAAAAQAHAAoAAAAAAAAAAQAHAAsAAAAAAAAAAQAHAAwAAAAAAAAAAQAHAA0AAAAAAAAAAQAPAA8AAAAAAAAAAQAPAA4AAAAAAAAAAQAPAA0AAAAAAAAAAQAPAAwAAAAAAAAAAQAPAAsAAAAAAAAAAQAPAAoAAAAAAAAAAQAPAAkAAAAAAAAAAQAPAAgAAAAAAAAAAQAPAAcAAAAAAAAAAQAPAAYAAAAAAAAAAQAPAAUAAAAAAAAAAQAPAAQAAAAAAAAAAQAVAAIAAAAAAAAAAQAVAAMAAAAAAAAAAQAVAAQAAAAAAAAAAQAVAAUAAAAAAAAAAQAVAAYAAAAAAAAAAQAVAAcAAAAAAAAAAQAVAAgAAAAAAAAAAQAVAAkAAAAAAAAAAQAVAAoAAAAAAAAAAQAVAAsAAAAAAAAAAQAVAAwAAAAAAAAAAQAVAA0AAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_gmv1u")
+
+[node name="Void" parent="." instance=ExtResource("5_7gjfm")]
+position = Vector2(182, 136)
