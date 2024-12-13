@@ -14,7 +14,6 @@ var is_destroyed := false
 
 func _ready() -> void:
 	targets_left += 1
-	print(targets_left)
 
 
 func explode() -> void:
