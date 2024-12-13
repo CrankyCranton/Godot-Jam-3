@@ -961,13 +961,9 @@ position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_232dr")
 
 [node name="Gun" parent="." instance=ExtResource("18_t80qv")]
-<<<<<<< HEAD
 position = Vector2(163, 95)
-=======
-position = Vector2(13, 26)
 
 [node name="PauseScreen" parent="." instance=ExtResource("19_w371y")]
 
 [node name="CurcuitBoard" parent="." instance=ExtResource("19_q10pw")]
 position = Vector2(80, 108)
->>>>>>> b5f6cbae43d138af81adf80baf86eb940d34b983
