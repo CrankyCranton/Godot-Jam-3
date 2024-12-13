@@ -69,7 +69,7 @@ _data = {
 "destroy": SubResource("Animation_hpa2j")
 }
 
-[node name="Target" type="StaticBody2D"]
+[node name="Target" type="StaticBody2D" groups=["targets"]]
 script = ExtResource("1_x2qv7")
 
 [node name="Sprite" type="Sprite2D" parent="."]

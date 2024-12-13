@@ -39,6 +39,8 @@ var titles := {
 
 func _ready() -> void:
 	timer.text = str(time)
+	for target: Target in get_tree().get_nodes_in_group(&"targets"):
+		target.won.connect(_on_target_won)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -74,6 +76,7 @@ func deactivate() -> void:
 
 
 func _on_play_again_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
@@ -90,3 +93,7 @@ func _on_tick_timeout() -> void:
 	if time <= 0:
 		tick.stop()
 		activate(Mode.LOSE)
+
+
+func _on_target_won() -> void:
+	activate(Mode.WIN)
