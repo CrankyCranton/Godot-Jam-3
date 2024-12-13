@@ -78,11 +78,13 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 16.0
 grow_horizontal = 2
+theme = ExtResource("1_eetpw")
 horizontal_alignment = 1
 
 [node name="Tick" type="Timer" parent="."]
+process_mode = 1
 autostart = true
 
 [connection signal="pressed" from="Layout/Menu/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
