@@ -11,4 +11,5 @@ func explode():
 	queue_free()
 
 func _on_tilemap_detector_area_entered(area: Area2D) -> void:
+	await get_tree().create_timer(0.1).timeout
 	explode()
