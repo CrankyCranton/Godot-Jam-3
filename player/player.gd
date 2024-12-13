@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 @onready var camera:Camera2D = $Camera2D
 @onready var dash_timer:Timer = $DashTimer
-@onready var gun:Node2D = $Gun
+#@onready var gun:Node2D = $Gun
 
 var number_of_bombs:int = 2
 
@@ -54,3 +54,6 @@ func _on_dash_timer_timeout() -> void:
 	can_dash = false
 	await get_tree().create_timer(0.3).timeout
 	can_dash = true
+
+func remove_task(indx:int):
+	$CanvasLayer/Task_list.remove_task(2)
