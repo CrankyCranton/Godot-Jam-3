@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://bniqxuw3nf758"]
+
+[ext_resource type="Theme" uid="uid://c0dstatoqgw66" path="res://assets/theme.theme" id="1_eetpw"]
+[ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_oydl0"]
+
+[node name="PauseScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_oydl0")
+
+[node name="Layout" type="Control" parent="."]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eetpw")
+
+[node name="Background" type="ColorRect" parent="Layout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Title" type="Label" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 35.0
+grow_horizontal = 2
+text = "Hah! As anticipated, the earthling failed."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Menu" type="VBoxContainer" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -20.0
+offset_right = 25.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="Layout/Menu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Play Again"
+
+[node name="ResumeButton" type="Button" parent="Layout/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Layout/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="Timer" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+
+[node name="Tick" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Layout/Menu/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="Layout/Menu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Layout/Menu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

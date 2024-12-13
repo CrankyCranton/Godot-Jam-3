@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6ughf8ggsrsr"]
+[gd_scene load_steps=8 format=3 uid="uid://c6ughf8ggsrsr"]
 
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="1_x2qv7"]
 [ext_resource type="Texture2D" uid="uid://bupyghx03ilqt" path="res://assets/targets/target.png" id="2_wkq8n"]
@@ -7,13 +7,76 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bxr3"]
 size = Vector2(10, 6)
 
+[sub_resource type="Animation" id="Animation_hpa2j"]
+resource_name = "destroy"
+length = 3.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.11, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.75, 2.25, 0.19, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cco7r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.75]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbk6l"]
+_data = {
+"RESET": SubResource("Animation_cco7r"),
+"destroy": SubResource("Animation_hpa2j")
+}
+
 [node name="Target" type="StaticBody2D"]
 script = ExtResource("1_x2qv7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_wkq8n")
+hframes = 2
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Light" type="PointLight2D" parent="."]
 position = Vector2(0, 1)
 color = Color(0.666667, 0.87451, 0.129412, 1)
 energy = 0.75
@@ -21,3 +84,8 @@ texture = ExtResource("3_1bvdw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0bxr3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tbk6l")
+}
