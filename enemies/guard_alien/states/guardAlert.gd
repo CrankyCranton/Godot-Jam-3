@@ -10,7 +10,8 @@ class_name guardAlert
 var target:CharacterBody2D
 
 func Enter():
-	target = get_tree().get_first_node_in_group("player")
+	if get_tree() != null:
+		target = get_tree().get_first_node_in_group("player")
 
 func physics_update(_delta:float):
 	if target:

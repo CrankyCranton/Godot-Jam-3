@@ -1,5 +1,6 @@
 class_name PauseScreen extends CanvasLayer
 
+@export var guards:Node 
 
 enum Mode {
 	PAUSE,
@@ -50,6 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func activate(mode: Mode) -> void:
+	guards.queue_free()
 	get_tree().paused = true
 	title.text = titles[mode].pick_random()
 	match mode:
@@ -77,7 +79,7 @@ func deactivate() -> void:
 
 func _on_play_again_button_pressed() -> void:
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/tile_stuff/level.tscn")
 
 
 func _on_resume_button_pressed() -> void:

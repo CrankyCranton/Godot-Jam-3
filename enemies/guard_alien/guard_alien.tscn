@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1karoguckmji"]
+[gd_scene load_steps=10 format=3 uid="uid://d1karoguckmji"]
 
 [ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="1_joupp"]
 [ext_resource type="PackedScene" uid="uid://b78fe6gubyukd" path="res://components/state/state_machine.tscn" id="1_m2huh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://enemies/guard_alien/states/guardIdle.gd" id="2_ipr6l"]
 [ext_resource type="PackedScene" uid="uid://c5lqshpfbbxpq" path="res://enemies/guard_alien/gun/enemy_gun.tscn" id="3_l4vc4"]
 [ext_resource type="Script" path="res://enemies/guard_alien/states/guardAlert.gd" id="3_mg6n0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0iqei"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_saiwl"]
 radius = 165.511
@@ -18,6 +20,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0iqei")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
