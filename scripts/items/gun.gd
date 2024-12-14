@@ -24,7 +24,7 @@ func fire() -> void:
 	const LASER_BEAM := preload("res://scenes/laser_beam.tscn")
 	var laser_beam: LaserBeam = LASER_BEAM.instantiate()
 	laser_beam.global_transform = barrel.global_transform
-	call_deferred(&"add_sibling", laser_beam)
+	add_sibling.call_deferred(laser_beam)
 #endregion
 
 	ammo -= 1

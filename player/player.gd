@@ -1,8 +1,10 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
+
 
 @export var speed:float
 @export var accel:float
 
+@onready var hand:Marker2D = %Hand
 @onready var camera:Camera2D = $Camera2D
 @onready var dash_timer:Timer = $DashTimer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -14,14 +16,17 @@ extends CharacterBody2D
 		animation_tree.set(&"parameters/Punch/blend_position", anim_dir)
 		animation_tree.set(&"parameters/Run/blend_position", anim_dir)
 		animation_tree.set(&"parameters/Throw/blend_position", anim_dir)
-
 #@onready var gun:Node2D = $Gun
 
 var number_of_bombs:int = 2
-
 var can_dash:bool = true
-
 var grenade_load:PackedScene = preload("res://player/explosive/explosive.tscn")
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("throw"):
+		throw()
+
 
 func _physics_process(delta: float) -> void:
 	var input_direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down").limit_length()
@@ -59,8 +64,18 @@ func _physics_process(delta: float) -> void:
 		dash_timer.start()
 		velocity = input_direction * 300
 
+
 func camera_shake():
 	$Camera2D.apply_shake()
+
+
+func throw() -> void:
+	if hand.get_child_count() <= 0:
+		return
+
+	var item := hand.get_child(0)
+	item.reparent.call_deferred(get_parent())
+
 
 
 func _on_dash_timer_timeout() -> void:
@@ -71,3 +86,16 @@ func _on_dash_timer_timeout() -> void:
 
 func remove_task(indx:int):
 	$CanvasLayer/Task_list.remove_task(indx)
+
+
+func _on_pickip_scanner_body_entered(body: Node2D) -> void:
+	if hand.get_child_count() > 0:
+		return
+	if body is Grenade:
+		if body.thrown:
+			return
+		body.thrown = true
+
+	body.collect()
+	body.reparent.call_deferred(hand, false)
+	body.position = Vector2()

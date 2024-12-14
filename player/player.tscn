@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dimdxohw588xg" path="res://assets/player/player.png" id="2_pl0yu"]
 [ext_resource type="Script" path="res://player/camera_2d.gd" id="3_x245e"]
 [ext_resource type="PackedScene" uid="uid://b0k8ilvat2ipt" path="res://scenes/task_list.tscn" id="5_8v87v"]
-[ext_resource type="Texture2D" uid="uid://bsooutmtd8f2s" path="res://assets/items/grenade/grenade.png" id="5_ofbne"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxla4"]
 radius = 2.0
@@ -953,8 +952,12 @@ states/Throw/position = Vector2(385, 15)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tti5i"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_bja6v"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_w70kq"), "Idle", "Punch", SubResource("AnimationNodeStateMachineTransition_0etcw"), "Punch", "Idle", SubResource("AnimationNodeStateMachineTransition_tqqqy"), "Idle", "Throw", SubResource("AnimationNodeStateMachineTransition_s71mt"), "Throw", "Idle", SubResource("AnimationNodeStateMachineTransition_ry4ug")]
 graph_offset = Vector2(-94, -20)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7uesw"]
+radius = 8.0
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 2
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_11ufu")
 speed = 70.0
 accel = 10.0
@@ -965,10 +968,8 @@ offset = Vector2(0, -7)
 hframes = 33
 
 [node name="Hand" type="Marker2D" parent="Sprite2D"]
+unique_name_in_owner = true
 position = Vector2(0, -4)
-
-[node name="Grenade" type="Sprite2D" parent="Sprite2D/Hand"]
-texture = ExtResource("5_ofbne")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.57079
@@ -983,10 +984,6 @@ wait_time = 0.1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Task_list" parent="CanvasLayer" instance=ExtResource("5_8v87v")]
-offset_left = 1.0
-offset_top = 2.0
-offset_right = -211.0
-offset_bottom = -130.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1001,4 +998,12 @@ parameters/Punch/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 parameters/Throw/blend_position = Vector2(0, 0)
 
+[node name="PickipScanner" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickipScanner"]
+shape = SubResource("CircleShape2D_7uesw")
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="body_entered" from="PickipScanner" to="." method="_on_pickip_scanner_body_entered"]
