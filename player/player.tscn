@@ -1,10 +1,11 @@
-[gd_scene load_steps=56 format=3 uid="uid://bgou0u66jm82e"]
+[gd_scene load_steps=57 format=3 uid="uid://bgou0u66jm82e"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_11ufu"]
 [ext_resource type="Texture2D" uid="uid://dimdxohw588xg" path="res://assets/player/player.png" id="2_pl0yu"]
 [ext_resource type="Script" path="res://player/camera_2d.gd" id="3_x245e"]
 [ext_resource type="PackedScene" uid="uid://b0k8ilvat2ipt" path="res://scenes/task_list.tscn" id="5_8v87v"]
 [ext_resource type="AudioStream" uid="uid://cwgwssdbqdfur" path="res://assets/sound effects/grunt-106134.mp3" id="5_grbat"]
+[ext_resource type="PackedScene" uid="uid://dl5w1mq85c82p" path="res://scenes/items/gun.tscn" id="6_l1emf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxla4"]
 radius = 2.0
@@ -1014,6 +1015,8 @@ shape = SubResource("CircleShape2D_7uesw")
 
 [node name="punch" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_grbat")
+
+[node name="Gun" parent="." instance=ExtResource("6_l1emf")]
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
