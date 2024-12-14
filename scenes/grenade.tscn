@@ -17,6 +17,7 @@ collision_layer = 24
 collision_mask = 29
 physics_material_override = SubResource("PhysicsMaterial_7wyh6")
 gravity_scale = 0.0
+continuous_cd = 1
 linear_damp = 1.5
 script = ExtResource("1_xmj0r")
 radius = 16.0

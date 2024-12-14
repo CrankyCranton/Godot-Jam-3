@@ -483,6 +483,30 @@ position = Vector2(1479, -757)
 [node name="bomb_pickup5" parent="pickup" instance=ExtResource("15_4hxvr")]
 position = Vector2(1320, 163)
 
+[node name="bomb_pickup6" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(821, 329)
+
+[node name="bomb_pickup7" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(848, 329)
+
+[node name="bomb_pickup8" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(835, 301)
+
+[node name="bomb_pickup9" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(2081, -107)
+
+[node name="bomb_pickup10" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(2075, -585)
+
+[node name="bomb_pickup11" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(534, -676)
+
+[node name="bomb_pickup12" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(1562, -92)
+
+[node name="bomb_pickup13" parent="pickup" instance=ExtResource("15_4hxvr")]
+position = Vector2(493, 100)
+
 [connection signal="died" from="player" to="PauseScreen" method="activate" binds= [1]]
 [connection signal="body_entered" from="void_area2" to="." method="_on_void_area_2_body_entered"]
 [connection signal="body_entered" from="void_area" to="." method="_on_void_area_body_entered"]
