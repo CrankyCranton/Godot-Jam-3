@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://clsiuji13rke4"]
+[gd_scene load_steps=3 format=3 uid="uid://clsiuji13rke4"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_u8qmm"]
+[ext_resource type="FontFile" uid="uid://be3dixkpwsr83" path="res://assets/bytebounce/ByteBounce.ttf" id="2_odbkw"]
 
 [node name="Main_menu" type="Control"]
 layout_mode = 3
@@ -23,21 +24,25 @@ alignment = 1
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_odbkw")
 text = "Play
 "
 
 [node name="Tutorial" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_odbkw")
 text = "Tutorial"
 
 [node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_odbkw")
 text = "Settings
 
 "
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_odbkw")
 text = "Quit
 
 "
