@@ -3,7 +3,7 @@ class_name guardAlert
 
 @export var navigation:NavigationAgent2D
 @export var enemy_parent:CharacterBody2D
-
+@export var sprite:AnimatedSprite2D
 
 @export var spd:int
 
@@ -15,6 +15,8 @@ func Enter():
 
 func physics_update(_delta:float):
 	if target:
+		sprite.play("run")
+		enemy_parent.look_at(target.global_position)
 		_move_to_taget(_delta)
 	enemy_parent.move_and_slide()
 

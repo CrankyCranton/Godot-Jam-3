@@ -1,15 +1,34 @@
-extends RigidBody2D
+class_name Grenade extends RigidBody2D
 
-#func _on_fuse_timer_timeout() -> void:
-	#linear_velocity = Vector2.ZERO
-	#gravity_scale = 0
-	#apply_central_impulse(Vector2(0,0))
-	#queue_free()
+@export var radius := 32.0
 
-func explode():
-	#particle bruh
+var thrown := false
+
+@onready var glow: PointLight2D = $Glow
+@onready var timer: Timer = $Timer
+
+func collect() -> void:
+	freeze = true
+	glow.hide()
+
+func throw(velocity: Vector2, torque: float) -> void:
+	timer = $Timer
+
+	freeze = false
+	apply_central_impulse(velocity)
+	apply_torque_impulse(torque)
+	thrown = true
+
+
+func _explode():
+	const EXPLOSION := preload("res://scenes/explosion.tscn")
+	var explosion: Explosion = EXPLOSION.instantiate()
+	explosion.global_position = global_position
+	explosion.radius = radius
+	add_sibling.call_deferred("add_child", explosion)
+	await explosion.ready
 	queue_free()
 
-func _on_tilemap_detector_area_entered(area: Area2D) -> void:
-	await get_tree().create_timer(0.1).timeout
-	explode()
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

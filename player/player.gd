@@ -12,6 +12,7 @@ signal died
 @onready var camera:Camera2D = $Camera2D
 @onready var dash_timer:Timer = $DashTimer
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var punch_sound: AudioStreamPlayer2D = $punch
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get(&"parameters/playback")
 @onready var anim_dir:Vector2 = Vector2():
 	set(value):
@@ -25,7 +26,7 @@ signal died
 var can_animate := true
 var number_of_bombs:int = 2
 var can_dash:bool = true
-var grenade_load:PackedScene = preload("res://player/explosive/explosive.tscn")
+var grenade_load:PackedScene = preload("res://scenes/grenade.tscn")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -46,19 +47,18 @@ func _physics_process(delta: float) -> void:
 	#gun.look_at(get_global_mouse_position())
 
 	if Input.is_action_just_pressed("Grenade") and number_of_bombs > 0:
-		var grenade: RigidBody2D = grenade_load.instantiate()
+		var grenade:Grenade = grenade_load.instantiate()
 		grenade.position = global_position
 
 		var mouse_position = get_global_mouse_position()
 		var direction = (mouse_position - grenade.position).normalized()
 
-		var forward_force: int = 400
 		get_tree().root.call_deferred("add_child", grenade)
-		grenade.apply_central_impulse(direction * forward_force)
+		grenade.throw(direction*throw_force,throw_torque)
 		number_of_bombs - 0
+		print(number_of_bombs)
 
 		#var grenade:RigidBody2D = grenade_load.instantiate()
-		grenade.position = global_position
 
 		#var forward_force:int = 500
 		#get_tree().root.call_deferred("add_child",grenade)
@@ -99,15 +99,16 @@ func remove_task(indx:int):
 
 
 func _on_pickip_scanner_body_entered(body: Node2D) -> void:
-	if hand.get_child_count() > 0:
-		return
-	if body is Grenade:
-		if body.thrown:
-			return
+#	if hand.get_child_count() > 0:
+		#return
+	#if body is Grenade:
+		#if body.thrown:
+			#return
 
-	body.collect()
-	body.reparent.call_deferred(hand, false)
-	body.position = Vector2()
+	#body.collect()
+	#body.reparent.call_deferred(hand, false)
+	#body.position = Vector2()
+	pass
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:

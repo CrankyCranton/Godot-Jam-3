@@ -25,6 +25,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func explode() -> void:
+	$explosion.play()
 	var avg_speed: float = lerpf(fire.process_material.initial_velocity_min,
 			fire.process_material.initial_velocity_max, 0.5)
 	var lifetime := radius / avg_speed

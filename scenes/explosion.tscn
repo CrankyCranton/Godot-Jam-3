@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbeevbiong0h2"]
+[gd_scene load_steps=16 format=3 uid="uid://bbeevbiong0h2"]
 
 [ext_resource type="Script" path="res://scripts/explosion.gd" id="1_b0l0v"]
 [ext_resource type="Texture2D" uid="uid://bs8ld2eunvqgi" path="res://assets/particles/explosion/explosion.png" id="2_2rfjr"]
+[ext_resource type="AudioStream" uid="uid://b2r188aj4sstc" path="res://assets/sound effects/medium-explosion-40472.mp3" id="3_6sfpk"]
 
 [sub_resource type="Gradient" id="Gradient_knmyq"]
 offsets = PackedFloat32Array(0, 0.1, 1)
@@ -83,17 +84,18 @@ resource_local_to_scene = true
 radius = 0.01
 
 [node name="Explosion" type="Area2D"]
-collision_layer = 0
+collision_layer = 24
 collision_mask = 31
 script = ExtResource("1_b0l0v")
 
 [node name="HolySmoke!" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 emitting = false
-amount = 64
+amount = 32
+amount_ratio = 0.3
 process_material = SubResource("ParticleProcessMaterial_4ur28")
 texture = ExtResource("2_2rfjr")
-lifetime = 5.0
+lifetime = 2.0
 one_shot = true
 collision_base_size = 0.25
 
@@ -101,7 +103,8 @@ collision_base_size = 0.25
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_xmvno")
 emitting = false
-amount = 128
+amount = 64
+amount_ratio = 0.5
 sub_emitter = NodePath("../HolySmoke!")
 process_material = SubResource("ParticleProcessMaterial_1u6on")
 texture = ExtResource("2_2rfjr")
@@ -118,3 +121,6 @@ shape = SubResource("CircleShape2D_mn52s")
 enabled = false
 target_position = Vector2(0, 0)
 collision_mask = 31
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6sfpk")

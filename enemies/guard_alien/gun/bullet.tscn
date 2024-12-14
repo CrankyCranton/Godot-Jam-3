@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqsvd6c4po8oc"]
+[gd_scene load_steps=4 format=3 uid="uid://bqsvd6c4po8oc"]
 
 [ext_resource type="Script" path="res://enemies/guard_alien/gun/bullet.gd" id="1_78iyx"]
 [ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="2_hb7fr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4u60"]
 
 [node name="bullet" type="CharacterBody2D"]
 script = ExtResource("1_78iyx")
@@ -11,3 +13,20 @@ script = ExtResource("1_78iyx")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_hb7fr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="collision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
+shape = SubResource("RectangleShape2D_n4u60")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="collision" to="." method="_on_collision_body_entered"]
