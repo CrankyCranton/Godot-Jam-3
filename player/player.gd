@@ -84,8 +84,11 @@ func throw() -> void:
 	else:
 		playback.travel(&"Throw")
 		var item := hand.get_child(0)
-		item.reparent.call_deferred(get_parent())
-		item.throw(anim_dir.normalized() * throw_force, randf_range(-throw_torque, throw_torque))
+		if item is Gun:
+			item.fire()
+		else:
+			item.reparent.call_deferred(get_parent())
+			item.throw(anim_dir.normalized() * throw_force, randf_range(-throw_torque, throw_torque))
 
 
 func _on_dash_timer_timeout() -> void:
@@ -109,6 +112,10 @@ func _on_pickip_scanner_body_entered(body: Node2D) -> void:
 	#body.reparent.call_deferred(hand, false)
 	#body.position = Vector2()
 	pass
+
+
+func _on_pickip_scanner_area_entered(area: Area2D) -> void:
+	_on_pickip_scanner_body_entered(area)
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:

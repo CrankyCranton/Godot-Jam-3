@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl5w1mq85c82p"]
+[gd_scene load_steps=7 format=3 uid="uid://dl5w1mq85c82p"]
 
 [ext_resource type="Texture2D" uid="uid://c03srpav2opc7" path="res://assets/items/laser_gun/laser_gun.png" id="1_3gqus"]
 [ext_resource type="Script" path="res://scripts/items/gun.gd" id="2_oqrbe"]
@@ -54,15 +54,28 @@ _data = {
 "delete": SubResource("Animation_7wfvw")
 }
 
-[node name="Gun" type="Sprite2D"]
-position = Vector2(-3, 0)
-texture = ExtResource("1_3gqus")
+[sub_resource type="CircleShape2D" id="CircleShape2D_smi3a"]
+radius = 4.0
+
+[node name="Gun" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
 script = ExtResource("2_oqrbe")
 
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_3gqus")
+offset = Vector2(1, -1)
+
 [node name="Barrel" type="Marker2D" parent="."]
-position = Vector2(3.5, -0.5)
+position = Vector2(4.5, -1.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_i4v7t")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_smi3a")
