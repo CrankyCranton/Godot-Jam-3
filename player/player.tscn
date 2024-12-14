@@ -995,6 +995,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 tree_root = SubResource("AnimationNodeStateMachine_gujdc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = Vector2(0, 0)
@@ -1011,4 +1012,5 @@ shape = SubResource("CircleShape2D_7uesw")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="area_entered" from="PickipScanner" to="." method="_on_pickip_scanner_area_entered"]
 [connection signal="body_entered" from="PickipScanner" to="." method="_on_pickip_scanner_body_entered"]

@@ -1,14 +1,10 @@
-class_name Gun extends Sprite2D
+class_name Gun extends Area2D
 
 
 @export var ammo := 3
 
 @onready var barrel: Marker2D = $Barrel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-
-func _ready() -> void:
-	fire_at_random()
 
 
 func fire_at_random() -> void:
