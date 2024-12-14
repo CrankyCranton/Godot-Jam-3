@@ -62,11 +62,11 @@ func activate(mode: Mode) -> void:
 			#play_again_button.text = "Lose Again"
 			#quit_button.text = "Rage Quit"
 			resume_button.hide()
-			play_again_button.show()
+			play_again_button.text = "Play Again!"
 			play_again_button.grab_focus()
 		Mode.WIN:
 			resume_button.hide()
-			play_again_button.show()
+			play_again_button.text = "Play Again!"
 			play_again_button.grab_focus()
 	layout.show()
 

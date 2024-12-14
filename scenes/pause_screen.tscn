@@ -55,16 +55,15 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="PlayAgainButton" type="Button" parent="Layout/Menu"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Play Again"
-
 [node name="ResumeButton" type="Button" parent="Layout/Menu"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
+
+[node name="PlayAgainButton" type="Button" parent="Layout/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
 
 [node name="QuitButton" type="Button" parent="Layout/Menu"]
 unique_name_in_owner = true
@@ -87,7 +86,7 @@ horizontal_alignment = 1
 process_mode = 1
 autostart = true
 
-[connection signal="pressed" from="Layout/Menu/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="Layout/Menu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Layout/Menu/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="Layout/Menu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

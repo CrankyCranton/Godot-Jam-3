@@ -111,5 +111,5 @@ func _on_pickip_scanner_body_entered(body: Node2D) -> void:
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	if anim_name in [&"Punch", &"Throw"]:
+	if anim_name.begins_with("punch") or anim_name.begins_with("throw"):
 		can_animate = true
