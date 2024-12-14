@@ -225,6 +225,7 @@ scenes/1/scene = ExtResource("3_dp5ts")
 [sub_resource type="TileSet" id="TileSet_wb7tn"]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_xhov0")
 sources/1 = SubResource("TileSetScenesCollectionSource_u1piw")
