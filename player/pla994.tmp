@@ -1,10 +1,9 @@
-[gd_scene load_steps=56 format=3 uid="uid://bgou0u66jm82e"]
+[gd_scene load_steps=55 format=3 uid="uid://bgou0u66jm82e"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_11ufu"]
 [ext_resource type="Texture2D" uid="uid://dimdxohw588xg" path="res://assets/player/player.png" id="2_pl0yu"]
 [ext_resource type="Script" path="res://player/camera_2d.gd" id="3_x245e"]
 [ext_resource type="PackedScene" uid="uid://b0k8ilvat2ipt" path="res://scenes/task_list.tscn" id="5_8v87v"]
-[ext_resource type="AudioStream" uid="uid://cwgwssdbqdfur" path="res://assets/sound effects/grunt-106134.mp3" id="5_grbat"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxla4"]
 radius = 2.0
@@ -966,8 +965,6 @@ collision_mask = 15
 script = ExtResource("1_11ufu")
 speed = 70.0
 accel = 10.0
-throw_force = 500.0
-throw_torque = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_pl0yu")
@@ -998,7 +995,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_gujdc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = Vector2(0, 0)
@@ -1013,8 +1009,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupScanner"]
 shape = SubResource("CircleShape2D_7uesw")
 
-[node name="punch" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_grbat")
-
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="PickupScanner" to="." method="_on_pickip_scanner_body_entered"]

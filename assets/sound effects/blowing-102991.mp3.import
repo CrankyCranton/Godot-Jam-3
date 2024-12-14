@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drvbromrqxwpf"
+path="res://.godot/imported/blowing-102991.mp3-945f4ecefa603e958e02250fe5a80976.mp3str"
+
+[deps]
+
+source_file="res://assets/sound effects/blowing-102991.mp3"
+dest_files=["res://.godot/imported/blowing-102991.mp3-945f4ecefa603e958e02250fe5a80976.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

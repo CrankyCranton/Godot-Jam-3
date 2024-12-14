@@ -1,30 +1,62 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1karoguckmji"]
+[gd_scene load_steps=14 format=3 uid="uid://d1karoguckmji"]
 
-[ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="1_joupp"]
 [ext_resource type="PackedScene" uid="uid://b78fe6gubyukd" path="res://components/state/state_machine.tscn" id="1_m2huh"]
+[ext_resource type="Texture2D" uid="uid://cpv6honmno36t" path="res://assets/alien/alien.png" id="1_mf4a8"]
 [ext_resource type="Script" path="res://enemies/guard_alien/states/guardShoot.gd" id="2_6evm2"]
 [ext_resource type="Script" path="res://enemies/guard_alien/states/guardIdle.gd" id="2_ipr6l"]
 [ext_resource type="PackedScene" uid="uid://c5lqshpfbbxpq" path="res://enemies/guard_alien/gun/enemy_gun.tscn" id="3_l4vc4"]
 [ext_resource type="Script" path="res://enemies/guard_alien/states/guardAlert.gd" id="3_mg6n0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iqei"]
+size = Vector2(8, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8ynq"]
+atlas = ExtResource("1_mf4a8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki056"]
+atlas = ExtResource("1_mf4a8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs8a3"]
+atlas = ExtResource("1_mf4a8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oq2dd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8ynq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki056")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs8a3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_saiwl"]
-radius = 165.511
+radius = 59.0339
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iqr2c"]
-radius = 242.0
+radius = 98.1275
 
 [node name="guard_alien" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_0iqei")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_joupp")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oq2dd")
+animation = &"run"
+frame_progress = 0.405594
 
 [node name="shooting_range" type="Area2D" parent="."]
 collision_layer = 0
@@ -44,10 +76,11 @@ initial_state = NodePath("guardIdle")
 [node name="guardIdle" type="Node" parent="state_machine"]
 script = ExtResource("2_ipr6l")
 
-[node name="guardAlert" type="Node" parent="state_machine" node_paths=PackedStringArray("navigation", "enemy_parent")]
+[node name="guardAlert" type="Node" parent="state_machine" node_paths=PackedStringArray("navigation", "enemy_parent", "sprite")]
 script = ExtResource("3_mg6n0")
 navigation = NodePath("../../NavigationAgent2D")
 enemy_parent = NodePath("../..")
+sprite = NodePath("../../Sprite2D")
 spd = 20
 
 [node name="guardShoot" type="Node" parent="state_machine" node_paths=PackedStringArray("gun", "timer")]
@@ -56,6 +89,7 @@ gun = NodePath("../../enemy_gun")
 timer = NodePath("../../Timer")
 
 [node name="enemy_gun" parent="." instance=ExtResource("3_l4vc4")]
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

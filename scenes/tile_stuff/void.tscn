@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://w2swkfj75etp"]
+[gd_scene load_steps=4 format=3 uid="uid://w2swkfj75etp"]
 
 [ext_resource type="Script" path="res://scenes/tile_stuff/void.gd" id="1_68ax4"]
+[ext_resource type="AudioStream" uid="uid://drvbromrqxwpf" path="res://assets/sound effects/blowing-102991.mp3" id="2_kp0n2"]
+[ext_resource type="AudioStream" uid="uid://dspo27dtvlay0" path="res://assets/sound effects/long-whoosh-194554.mp3" id="3_4vd1l"]
 
 [node name="Void" type="RayCast2D"]
 target_position = Vector2(200, 0)
 collision_mask = 3
 script = ExtResource("1_68ax4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="suck" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_kp0n2")
+bus = &"sfx"
+
+[node name="whoosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4vd1l")
+volume_db = 1.0
+bus = &"sfx"
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

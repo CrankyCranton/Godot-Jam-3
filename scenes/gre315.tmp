@@ -17,9 +17,9 @@ collision_layer = 24
 collision_mask = 29
 physics_material_override = SubResource("PhysicsMaterial_7wyh6")
 gravity_scale = 0.0
+freeze = true
 linear_damp = 1.5
 script = ExtResource("1_xmj0r")
-radius = 16.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_2vug4")
@@ -31,7 +31,6 @@ shape = SubResource("CapsuleShape2D_usyws")
 texture = ExtResource("3_kc6n4")
 
 [node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
+wait_time = 0.3
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

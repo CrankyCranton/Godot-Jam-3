@@ -7,6 +7,7 @@
 size = Vector2(10, 6)
 
 [node name="BasicTarget" groups=["basic_targets"] instance=ExtResource("1_imk3o")]
+collision_layer = 10
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_gfa5e")
