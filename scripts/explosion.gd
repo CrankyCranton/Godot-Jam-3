@@ -35,7 +35,8 @@ func explode() -> void:
 	holy_smoke.amount = roundi(fire.amount * max_smoke)#fire.process_material.sub_emitter_frequency * lifetime
 	fire.emitting = true
 
-	await create_tween().tween_property(shape.shape, ^"radius", radius, fire.lifetime).finished
+	await create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE
+			).tween_property(shape.shape, ^"radius", radius, fire.lifetime).finished
 	shape.set_deferred(&"disabled", true)
 	await get_tree().create_timer(holy_smoke.lifetime, false).timeout
 	queue_free()
@@ -52,3 +53,5 @@ func ray_scan() -> void:
 			hit.append(body)
 			if body is Wall or body is Target:
 				body.explode()
+			elif body is Player:# or body is Alien:
+				body.die()

@@ -117,3 +117,4 @@ shape = SubResource("CircleShape2D_mn52s")
 [node name="LineOfFire" type="RayCast2D" parent="."]
 enabled = false
 target_position = Vector2(0, 0)
+collision_mask = 31

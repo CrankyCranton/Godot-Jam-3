@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
 
+signal died
+
 @export var speed:float
 @export var accel:float
 @export var throw_force := 128.0
@@ -20,6 +22,7 @@ class_name Player extends CharacterBody2D
 		animation_tree.set(&"parameters/Throw/blend_position", anim_dir)
 #@onready var gun:Node2D = $Gun
 
+var can_animate := true
 var number_of_bombs:int = 2
 var can_dash:bool = true
 var grenade_load:PackedScene = preload("res://player/explosive/explosive.tscn")
@@ -31,11 +34,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var input_direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down").limit_length()
+	var input_direction = Input.get_vector("left","right","up","down").limit_length()
 	if input_direction != Vector2():
 		anim_dir = input_direction
-	if not playback.get_current_node() in [&"Punch", &"Throw"]:
-		pass#playback.travel(&"Run" if input_direction != Vector2() else &"Idle")
+	if can_animate:
+		playback.travel(&"Run" if input_direction != Vector2() else &"Idle")
 	velocity.x = move_toward(velocity.x,input_direction.x * speed,accel)
 	velocity.y = move_toward(velocity.y,input_direction.y * speed,accel)
 
@@ -70,7 +73,12 @@ func camera_shake():
 	$Camera2D.apply_shake()
 
 
+func die() -> void:
+	died.emit()
+
+
 func throw() -> void:
+	can_animate = false
 	if hand.get_child_count() <= 0:
 		playback.travel(&"Punch")
 	else:
@@ -100,3 +108,8 @@ func _on_pickip_scanner_body_entered(body: Node2D) -> void:
 	body.collect()
 	body.reparent.call_deferred(hand, false)
 	body.position = Vector2()
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name in [&"Punch", &"Throw"]:
+		can_animate = true

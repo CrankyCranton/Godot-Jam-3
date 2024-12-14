@@ -2,6 +2,7 @@ class_name Target extends StaticBody2D
 
 
 signal won
+signal destroyed
 
 static var targets_left := 0
 
@@ -21,5 +22,6 @@ func explode() -> void:
 		is_destroyed = true
 		animation_player.play(&"destroy")
 		targets_left -= 1
+		destroyed.emit()
 		if targets_left <= 0:
 			won.emit()

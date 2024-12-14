@@ -26,7 +26,6 @@ func _on_fuse_timeout() -> void:
 	const EXPLOSION := preload("res://scenes/explosion.tscn")
 	var explosion: Explosion = EXPLOSION.instantiate()
 	explosion.global_position = global_position
-	print(global_position)
 	explosion.radius = radius
 	add_sibling.call_deferred(explosion)
 	await explosion.ready
