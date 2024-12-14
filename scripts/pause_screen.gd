@@ -17,17 +17,14 @@ enum Mode {
 
 var titles := {
 	Mode.PAUSE: [
-		"Game Paused",
-		#"\"What, couldn't win without a pit stop?\"\n--President of Mars",
+		"\"What, couldn't win without a pit stop?\"\n--President of Mars",
 		],
 	Mode.LOSE: [
-		"Game Over",
-		#"\"Oh my, did I step on an ant?\"\n--President of Martians",
-		#"\"Hah! As expected, the earthling failed.\"\n--President of Mars",
+		"\"Oh my, did I step on an ant?\"\n--President of Martians",
+		"\"Hah! As expected, the earthling failed.\"\n--President of Mars",
 	],
 	Mode.WIN: [
-		"You Win!",
-		#"\"AHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!\"\n--President of Mars",
+		"\"AHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!\"\n--President of Mars",
 	],
 }
 
@@ -61,14 +58,14 @@ func activate(mode: Mode) -> void:
 		Mode.PAUSE:
 			resume_button.grab_focus()
 		Mode.LOSE:
-			#play_again_button.text = "Lose Again"
-			#quit_button.text = "Rage Quit"
+			play_again_button.text = "Lose Again"
+			quit_button.text = "Rage Quit"
 			resume_button.hide()
-			play_again_button.text = "Play Again!"
+			play_again_button.show()
 			play_again_button.grab_focus()
 		Mode.WIN:
 			resume_button.hide()
-			play_again_button.text = "Play Again!"
+			play_again_button.show()
 			play_again_button.grab_focus()
 	layout.show()
 
