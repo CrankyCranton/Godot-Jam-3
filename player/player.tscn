@@ -1159,9 +1159,9 @@ radius = 16.0
 collision_layer = 3
 collision_mask = 15
 script = ExtResource("1_11ufu")
-speed = 60.0
+speed = 128.0
 accel = 10.0
-throw_force = 500.0
+throw_force = 512.0
 throw_torque = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

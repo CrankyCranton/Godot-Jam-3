@@ -61,19 +61,23 @@ func activate(mode: Mode) -> void:
 		Mode.PAUSE:
 			resume_button.grab_focus()
 		Mode.LOSE:
+			end_screen()
 			#play_again_button.text = "Lose Again"
 			#quit_button.text = "Rage Quit"
-			resume_button.hide()
-			play_again_button.text = "Play Again!"
-			play_again_button.grab_focus()
+
 		Mode.WIN:
-			resume_button.hide()
-			play_again_button.text = "Play Again!"
-			play_again_button.grab_focus()
+			end_screen()
 	layout.show()
 
 
+func end_screen() -> void:
+	resume_button.hide()
+	play_again_button.text = "Play Again!"
+	play_again_button.grab_focus()
+
+
 func deactivate() -> void:
+	Target.targets_left = 0
 	for button: Button in menu.get_children():
 		button.release_focus()
 	layout.hide()
@@ -81,6 +85,7 @@ func deactivate() -> void:
 
 
 func _on_play_again_button_pressed() -> void:
+	Target.targets_left = 0
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/tile_stuff/level.tscn")
 

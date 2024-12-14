@@ -13,10 +13,12 @@ script = ExtResource("1_68ax4")
 position = Vector2(0, -2)
 
 [node name="suck" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("2_kp0n2")
 bus = &"sfx"
 
 [node name="whoosh" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("3_4vd1l")
 volume_db = 1.0
 bus = &"sfx"

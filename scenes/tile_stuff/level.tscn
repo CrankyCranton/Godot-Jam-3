@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cwg13o30qi7a0" path="res://scenes/targets/command_panel.tscn" id="11_jofrh"]
 [ext_resource type="PackedScene" uid="uid://i45ktf7shhgc" path="res://scenes/targets/refrigerator_target.tscn" id="12_tnkpm"]
 [ext_resource type="Texture2D" uid="uid://pjk4gmhjk3hl" path="res://assets/Space Background.png" id="13_2e83n"]
-[ext_resource type="PackedScene" path="res://scenes/tile_stuff/void_collision_exterior.tscn" id="15_2pjpu"]
+[ext_resource type="PackedScene" uid="uid://caqb3qy11k5u0" path="res://scenes/tile_stuff/void_collision_exterior.tscn" id="15_2pjpu"]
 [ext_resource type="PackedScene" uid="uid://cp7epnk325eew" path="res://scenes/items/bomb_pickup.tscn" id="15_4hxvr"]
 
 [node name="level" type="Node2D"]
