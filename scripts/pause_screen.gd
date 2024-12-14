@@ -1,6 +1,6 @@
 class_name PauseScreen extends CanvasLayer
 
-@export var guards:Node 
+@export var guards:Node
 
 enum Mode {
 	PAUSE,
