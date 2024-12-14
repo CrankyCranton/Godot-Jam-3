@@ -12,8 +12,7 @@ signal died
 @onready var camera:Camera2D = $Camera2D
 @onready var dash_timer:Timer = $DashTimer
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var punch_sound: AudioStreamPlayer2D = $punch
-@onready var gun:Gun = $Gun
+@onready var bomb_count:Label = $CanvasLayer/bomb_count
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get(&"parameters/playback")
 @onready var anim_dir:Vector2 = Vector2():
 	set(value):
@@ -36,6 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	bomb_count.text = str(number_of_bombs)
 	var input_direction = Input.get_vector("left","right","up","down").limit_length()
 	if input_direction != Vector2():
 		anim_dir = input_direction
@@ -47,10 +47,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	#gun.look_at(get_global_mouse_position())
 
-	if Input.is_action_just_pressed("fire"):
-		gun.fire()
 
 	if Input.is_action_just_pressed("Grenade") and number_of_bombs > 0:
+		number_of_bombs -= 1
 		var grenade:Grenade = grenade_load.instantiate()
 		grenade.position = global_position
 
@@ -59,8 +58,6 @@ func _physics_process(delta: float) -> void:
 
 		get_tree().root.call_deferred("add_child", grenade)
 		grenade.throw(direction*throw_force,throw_torque)
-		number_of_bombs - 0
-		print(number_of_bombs)
 
 		#var grenade:RigidBody2D = grenade_load.instantiate()
 
@@ -95,7 +92,7 @@ func throw() -> void:
 func _on_dash_timer_timeout() -> void:
 	accel = 10
 	can_dash = false
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.5).timeout
 	can_dash = true
 
 func remove_task(indx:int):
@@ -118,3 +115,8 @@ func _on_pickip_scanner_body_entered(body: Node2D) -> void:
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("punch") or anim_name.begins_with("throw"):
 		can_animate = true
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body is Guard:
+		body._die()

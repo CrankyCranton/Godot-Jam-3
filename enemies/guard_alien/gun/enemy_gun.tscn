@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5lqshpfbbxpq"]
 
 [ext_resource type="Script" path="res://enemies/guard_alien/gun/enemy_gun.gd" id="1_4cwbk"]
-[ext_resource type="Texture2D" uid="uid://b2eftip5kqblb" path="res://icon.svg" id="2_08t3f"]
+[ext_resource type="Texture2D" uid="uid://bj2qwe26s6u0g" path="res://assets/items/rifle.png" id="2_mjxbk"]
 
 [node name="enemy_gun" type="Node2D"]
 script = ExtResource("1_4cwbk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.1)
-texture = ExtResource("2_08t3f")
+texture = ExtResource("2_mjxbk")

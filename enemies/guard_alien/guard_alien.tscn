@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1karoguckmji"]
+[gd_scene load_steps=15 format=3 uid="uid://d1karoguckmji"]
 
+[ext_resource type="Script" path="res://enemies/guard_alien/guard_alien.gd" id="1_bidwq"]
 [ext_resource type="PackedScene" uid="uid://b78fe6gubyukd" path="res://components/state/state_machine.tscn" id="1_m2huh"]
 [ext_resource type="Texture2D" uid="uid://cpv6honmno36t" path="res://assets/alien/alien.png" id="1_mf4a8"]
 [ext_resource type="Script" path="res://enemies/guard_alien/states/guardShoot.gd" id="2_6evm2"]
@@ -48,6 +49,7 @@ radius = 98.1275
 [node name="guard_alien" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 2
+script = ExtResource("1_bidwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
@@ -89,7 +91,6 @@ gun = NodePath("../../enemy_gun")
 timer = NodePath("../../Timer")
 
 [node name="enemy_gun" parent="." instance=ExtResource("3_l4vc4")]
-visible = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

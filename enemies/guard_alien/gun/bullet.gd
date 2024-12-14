@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var direction = Vector2.RIGHT
 
-var spd = 500
+var spd = 400
 
 func _ready():
 	direction = Vector2.RIGHT.rotated(global_rotation)

@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://i45ktf7shhgc"]
+[gd_scene load_steps=6 format=3 uid="uid://i45ktf7shhgc"]
 
 [ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="1_51pir"]
 [ext_resource type="Texture2D" uid="uid://dmqjq6ybbi583" path="res://assets/targets/refrigerator/refrigerator.png" id="2_h2bus"]
+[ext_resource type="Script" path="res://scenes/targets/cryo_chamber_collision.gd" id="3_cedm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xdsy"]
 size = Vector2(28, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kdpf"]
+size = Vector2(30, 31)
+
 [node name="RefrigeratorTarget" instance=ExtResource("1_51pir")]
+collision_layer = 0
+collision_mask = 2
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(0, -2)
@@ -18,3 +24,14 @@ color = Color(0.992157, 0.478431, 0.156863, 1)
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_7xdsy")
+
+[node name="collision" type="Area2D" parent="." index="4"]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("3_cedm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision" index="0"]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_1kdpf")
+
+[connection signal="body_entered" from="collision" to="collision" method="_on_body_entered"]

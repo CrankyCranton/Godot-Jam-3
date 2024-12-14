@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc1q4h0uk8ohu"]
+[gd_scene load_steps=6 format=3 uid="uid://dc1q4h0uk8ohu"]
 
 [ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="1_imk3o"]
 [ext_resource type="Texture2D" uid="uid://bupyghx03ilqt" path="res://assets/targets/target.png" id="2_gfa5e"]
+[ext_resource type="Script" path="res://scenes/targets/target_collision.gd" id="3_ef6yt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcfyl"]
 size = Vector2(10, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4b32"]
+size = Vector2(30, 31)
 
 [node name="BasicTarget" groups=["basic_targets"] instance=ExtResource("1_imk3o")]
 collision_layer = 10
@@ -14,3 +18,14 @@ texture = ExtResource("2_gfa5e")
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_mcfyl")
+
+[node name="collision" type="Area2D" parent="." index="4"]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("3_ef6yt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision" index="0"]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_u4b32")
+
+[connection signal="body_entered" from="collision" to="collision" method="_on_body_entered"]

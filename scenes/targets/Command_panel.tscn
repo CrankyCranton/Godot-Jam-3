@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwg13o30qi7a0"]
+[gd_scene load_steps=6 format=3 uid="uid://cwg13o30qi7a0"]
 
 [ext_resource type="PackedScene" uid="uid://c6ughf8ggsrsr" path="res://scenes/targets/target.tscn" id="1_npvco"]
 [ext_resource type="Texture2D" uid="uid://cs5f7dqc1w4yu" path="res://assets/targets/command_panel/command_panel.png" id="2_qqopf"]
+[ext_resource type="Script" path="res://scenes/targets/command_collision.gd" id="3_avian"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6xae"]
 radius = 6.0
 height = 54.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fk0q"]
+size = Vector2(30, 31)
 
 [node name="CommandPanel" instance=ExtResource("1_npvco")]
 
@@ -21,3 +25,14 @@ color = Color(0.00392157, 0.721569, 0.843137, 1)
 position = Vector2(0, -1)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_e6xae")
+
+[node name="collision" type="Area2D" parent="." index="4"]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("3_avian")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision" index="0"]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_1fk0q")
+
+[connection signal="body_entered" from="collision" to="collision" method="_on_body_entered"]
