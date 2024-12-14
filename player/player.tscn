@@ -1017,6 +1017,7 @@ shape = SubResource("CircleShape2D_7uesw")
 stream = ExtResource("5_grbat")
 
 [node name="Gun" parent="." instance=ExtResource("6_l1emf")]
+position = Vector2(-3, 0)
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

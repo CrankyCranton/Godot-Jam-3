@@ -13,6 +13,7 @@ signal died
 @onready var dash_timer:Timer = $DashTimer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var punch_sound: AudioStreamPlayer2D = $punch
+@onready var gun:Gun = $Gun
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get(&"parameters/playback")
 @onready var anim_dir:Vector2 = Vector2():
 	set(value):
@@ -45,6 +46,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	#gun.look_at(get_global_mouse_position())
+
+	if Input.is_action_just_pressed("fire"):
+		gun.fire()
 
 	if Input.is_action_just_pressed("Grenade") and number_of_bombs > 0:
 		var grenade:Grenade = grenade_load.instantiate()
