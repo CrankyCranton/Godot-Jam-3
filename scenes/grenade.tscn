@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqo70edfboeno"]
+[gd_scene load_steps=6 format=3 uid="uid://cqo70edfboeno"]
 
 [ext_resource type="Texture2D" uid="uid://bsooutmtd8f2s" path="res://assets/items/grenade/grenade.png" id="1_2vug4"]
 [ext_resource type="Script" path="res://scripts/grenade.gd" id="1_xmj0r"]
 [ext_resource type="Texture2D" uid="uid://dc6numek7ase5" path="res://assets/lights/item_glow/item_glow.png" id="3_kc6n4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7wyh6"]
+friction = 0.5
+bounce = 0.5
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usyws"]
 radius = 2.0
@@ -11,8 +15,10 @@ height = 6.0
 [node name="Grenade" type="RigidBody2D"]
 collision_layer = 16
 collision_mask = 29
+physics_material_override = SubResource("PhysicsMaterial_7wyh6")
 gravity_scale = 0.0
 freeze = true
+linear_damp = 2.0
 script = ExtResource("1_xmj0r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,3 +29,9 @@ shape = SubResource("CapsuleShape2D_usyws")
 
 [node name="Glow" type="PointLight2D" parent="."]
 texture = ExtResource("3_kc6n4")
+
+[node name="Fuse" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Fuse" to="." method="_on_fuse_timeout"]

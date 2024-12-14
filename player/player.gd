@@ -3,6 +3,8 @@ class_name Player extends CharacterBody2D
 
 @export var speed:float
 @export var accel:float
+@export var throw_force := 128.0
+@export var throw_torque := 18000.0
 
 @onready var hand:Marker2D = %Hand
 @onready var camera:Camera2D = $Camera2D
@@ -24,17 +26,16 @@ var grenade_load:PackedScene = preload("res://player/explosive/explosive.tscn")
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("throw"):
+	if event.is_action_pressed(&"throw"):
 		throw()
 
 
 func _physics_process(delta: float) -> void:
 	var input_direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down").limit_length()
-	if input_direction != Vector2.ZERO:
+	if input_direction != Vector2():
 		anim_dir = input_direction
-		playback.travel(&"Run")
-	else:
-		playback.travel(&"Idle")
+	if not playback.get_current_node() in [&"Punch", &"Throw"]:
+		pass#playback.travel(&"Run" if input_direction != Vector2() else &"Idle")
 	velocity.x = move_toward(velocity.x,input_direction.x * speed,accel)
 	velocity.y = move_toward(velocity.y,input_direction.y * speed,accel)
 
@@ -71,11 +72,12 @@ func camera_shake():
 
 func throw() -> void:
 	if hand.get_child_count() <= 0:
-		return
-
-	var item := hand.get_child(0)
-	item.reparent.call_deferred(get_parent())
-
+		playback.travel(&"Punch")
+	else:
+		playback.travel(&"Throw")
+		var item := hand.get_child(0)
+		item.reparent.call_deferred(get_parent())
+		item.throw(anim_dir.normalized() * throw_force, randf_range(-throw_torque, throw_torque))
 
 
 func _on_dash_timer_timeout() -> void:
@@ -94,7 +96,6 @@ func _on_pickip_scanner_body_entered(body: Node2D) -> void:
 	if body is Grenade:
 		if body.thrown:
 			return
-		body.thrown = true
 
 	body.collect()
 	body.reparent.call_deferred(hand, false)

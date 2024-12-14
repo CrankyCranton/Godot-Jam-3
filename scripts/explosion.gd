@@ -17,7 +17,6 @@ var hit: Array[Node2D] = []
 
 
 func _ready() -> void:
-	await get_tree().create_timer(randf_range(3.0, 10.0)).timeout
 	explode()
 
 
