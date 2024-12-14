@@ -3,6 +3,7 @@ class_name Gun extends Area2D
 
 @export var ammo := 3
 
+@onready var sprite: Sprite2D = $Sprite
 @onready var barrel: Marker2D = $Barrel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -26,3 +27,7 @@ func fire() -> void:
 	ammo -= 1
 	if ammo <= 0:
 		animation_player.play(&"delete")
+
+
+func set_flip(flip: bool) -> void:
+	sprite.flip_h = flip

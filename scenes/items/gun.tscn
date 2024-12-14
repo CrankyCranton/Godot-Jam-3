@@ -64,8 +64,8 @@ monitoring = false
 script = ExtResource("2_oqrbe")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(1, -1)
 texture = ExtResource("1_3gqus")
+offset = Vector2(1, -1)
 
 [node name="Barrel" type="Marker2D" parent="."]
 position = Vector2(4.5, -1.5)
