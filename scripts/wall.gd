@@ -30,3 +30,4 @@ func explode() -> void:
 	if not destroyed:
 		destroyed = true
 		animation_player.play(&"explode")
+		queue_free()

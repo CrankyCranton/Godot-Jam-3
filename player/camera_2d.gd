@@ -13,7 +13,7 @@ func apply_shake():
 func _process(delta: float) -> void:
 	if shakeStrength > 0:
 		shakeStrength = lerpf(shakeStrength,0,shakeFade * delta)
-	
+
 		offset = randomOffset()
 
 func randomOffset() -> Vector2:

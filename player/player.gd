@@ -1,21 +1,44 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
+
+
+signal died
 
 @export var speed:float
 @export var accel:float
+@export var throw_force := 128.0
+@export var throw_torque := 18000.0
 
+@onready var hand:Marker2D = %Hand
 @onready var camera:Camera2D = $Camera2D
 @onready var dash_timer:Timer = $DashTimer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get(&"parameters/playback")
+@onready var anim_dir:Vector2 = Vector2():
+	set(value):
+		anim_dir = value
+		animation_tree.set(&"parameters/Idle/blend_position", anim_dir)
+		animation_tree.set(&"parameters/Punch/blend_position", anim_dir)
+		animation_tree.set(&"parameters/Run/blend_position", anim_dir)
+		animation_tree.set(&"parameters/Throw/blend_position", anim_dir)
 #@onready var gun:Node2D = $Gun
 
+var can_animate := true
 var number_of_bombs:int = 2
-
 var can_dash:bool = true
-
 var grenade_load:PackedScene = preload("res://player/explosive/explosive.tscn")
 
-func _physics_process(delta: float) -> void:
-	var input_direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down").limit_length()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"throw"):
+		throw()
+
+
+func _physics_process(delta: float) -> void:
+	var input_direction = Input.get_vector("left","right","up","down").limit_length()
+	if input_direction != Vector2():
+		anim_dir = input_direction
+	if can_animate:
+		playback.travel(&"Run" if input_direction != Vector2() else &"Idle")
 	velocity.x = move_toward(velocity.x,input_direction.x * speed,accel)
 	velocity.y = move_toward(velocity.y,input_direction.y * speed,accel)
 
@@ -45,8 +68,24 @@ func _physics_process(delta: float) -> void:
 		dash_timer.start()
 		velocity = input_direction * 300
 
+
 func camera_shake():
 	$Camera2D.apply_shake()
+
+
+func die() -> void:
+	died.emit()
+
+
+func throw() -> void:
+	can_animate = false
+	if hand.get_child_count() <= 0:
+		playback.travel(&"Punch")
+	else:
+		playback.travel(&"Throw")
+		var item := hand.get_child(0)
+		item.reparent.call_deferred(get_parent())
+		item.throw(anim_dir.normalized() * throw_force, randf_range(-throw_torque, throw_torque))
 
 
 func _on_dash_timer_timeout() -> void:
@@ -57,3 +96,20 @@ func _on_dash_timer_timeout() -> void:
 
 func remove_task(indx:int):
 	$CanvasLayer/Task_list.remove_task(indx)
+
+
+func _on_pickip_scanner_body_entered(body: Node2D) -> void:
+	if hand.get_child_count() > 0:
+		return
+	if body is Grenade:
+		if body.thrown:
+			return
+
+	body.collect()
+	body.reparent.call_deferred(hand, false)
+	body.position = Vector2()
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name.begins_with("punch") or anim_name.begins_with("throw"):
+		can_animate = true
