@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://clsiuji13rke4"]
 
+[ext_resource type="Theme" uid="uid://c0dstatoqgw66" path="res://assets/theme.theme" id="1_df18i"]
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_u8qmm"]
-[ext_resource type="FontFile" uid="uid://be3dixkpwsr83" path="res://assets/bytebounce/ByteBounce.ttf" id="2_odbkw"]
 
 [node name="Main_menu" type="Control"]
 layout_mode = 3
@@ -14,40 +14,39 @@ offset_right = -125.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_df18i")
 script = ExtResource("1_u8qmm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 175.0
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_right = 28.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Play" type="Button" parent="Menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_odbkw")
 text = "Play
 "
 
-[node name="Tutorial" type="Button" parent="VBoxContainer"]
+[node name="Tutorial" type="Button" parent="Menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_odbkw")
 text = "Tutorial"
 
-[node name="Settings" type="Button" parent="VBoxContainer"]
+[node name="Settings" type="Button" parent="Menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_odbkw")
-text = "Settings
+text = "Settings"
 
-"
-
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="Menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_odbkw")
-text = "Quit
+text = "Quit"
 
-"
-
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
-[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]

@@ -54,7 +54,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func activate(mode: Mode) -> void:
-	guards.queue_free()
 	get_tree().paused = true
 	title.text = titles[mode].pick_random()
 	match mode:

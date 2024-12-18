@@ -6,14 +6,14 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7wyh6"]
 friction = 0.5
-bounce = 0.5
+bounce = 0.2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usyws"]
 radius = 2.0
 height = 6.0
 
 [node name="Grenade" type="RigidBody2D"]
-collision_layer = 24
+collision_layer = 16
 collision_mask = 29
 physics_material_override = SubResource("PhysicsMaterial_7wyh6")
 gravity_scale = 0.0
